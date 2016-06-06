@@ -4,19 +4,17 @@ const buildCss = require('../modules/build-css');
 const buildHtml = require('../modules/build-html');
 
 gulp.task('build:js', function() {
-	buildJs();
+	return buildJs();
 });
 
 gulp.task('build:css', function() {
-	buildCss();
+	return buildCss();
 });
 
-gulp.task('build:html', function() {
-	buildHtml();
+gulp.task('build:html', ['build:js', 'build:css'], function(done) {
+	buildHtml(done);
 });
 
 gulp.task('build', [
-	'build:js',
-	'build:css',
 	'build:html'
 ]);
