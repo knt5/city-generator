@@ -15,5 +15,8 @@ node_modules
 # Gulp working directory
 /gulp/work/
 
+# Build html
+/*.html
+
 # temp
 /assets/dat/
