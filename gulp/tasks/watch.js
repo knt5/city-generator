@@ -1,20 +1,22 @@
-var gulp = require('gulp');
-//var config = require('../config/config');
+const gulp = require('gulp');
+const watchJs = require('../modules/watch-js');
+const watchScss = require('../modules/watch-scss');
+const watchHtml = require('../modules/watch-html');
 
-gulp.task('watch', function() {
-	
-	
-	
-	/*
-	// Build targets
-	gulp.watch(config.build.watchTargets, ['build']);
-	
-	// Lint targets: scss and js
-	gulp.watch(config.lint.targets.scss, ['lint:scss']);
-	gulp.watch(config.lint.targets.js, ['lint:js']);
-	
-	// Lint targets: built html and js
-	gulp.watch(config.lint.targets.built.html, ['lint:html:built']);
-	gulp.watch(config.lint.targets.built.js, ['lint:js:built']);
-	*/
+gulp.task('watch:js', function() {
+	watchJs();
 });
+
+gulp.task('watch:scss', function() {
+	watchScss();
+});
+
+gulp.task('watch:html', function() {
+	watchHtml();
+});
+
+gulp.task('watch', [
+	'watch:js',
+	'watch:scss',
+	'watch:html'
+]);
