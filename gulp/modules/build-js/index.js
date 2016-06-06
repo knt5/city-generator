@@ -5,6 +5,7 @@ const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
+const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 const config = require('./config');
 
@@ -43,6 +44,7 @@ module.exports = (done) => {
 				gulp.src(config.browserify.dest + '*.js')
 				.pipe(plumber())
 				.pipe(uglify())
+				.pipe(rename(name + '.mustache'))
 				.pipe(gulp.dest(config.minify.dest))
 				.on('end', () => {
 					

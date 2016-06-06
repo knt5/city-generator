@@ -26,10 +26,7 @@ module.exports = (done) => {
 		// Mustache
 		gulp.src(filePath)
 		.pipe(plumber())
-		.pipe(mustache({
-			css: '',
-			javascript: fs.readFileSync(config.jsDir + name + '.js')
-		}))
+		.pipe(mustache())
 		.pipe(gulp.dest(config.mustache.dest))
 		.on('end', ((name) => {
 			return () => {

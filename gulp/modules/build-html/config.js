@@ -9,5 +9,6 @@ module.exports = {
 	mustache: {
 		dest: 'gulp/works/html/merged/'
 	},
-	jsDir: 'gulp/works/js/minified/'
+	jsDir: 'gulp/works/js/minified/',
+	cssDir: 'gulp/works/css/'
 };
