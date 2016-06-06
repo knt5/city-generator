@@ -13,11 +13,10 @@ node_modules
 .sass-cache
 
 # Gulp working directory
-/gulp/work/
+/gulp/works/
 
 # Build assets
 /*.html
-/gulp/works/
 
 # temp
 /assets/dat/
