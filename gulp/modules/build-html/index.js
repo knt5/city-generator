@@ -1,5 +1,6 @@
 const glob = require('glob');
 const path = require('path');
+const fs = require('fs');
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const mustache = require('gulp-mustache');
@@ -16,19 +17,24 @@ module.exports = (done) => {
 	
 	// Build html
 	for (filePath of filePaths) {
+		
+		//-------------------------------
 		// Base name
 		name = path.basename(filePath, '.html');
 		
+		//-------------------------------
 		// Mustache
 		gulp.src(filePath)
 		.pipe(plumber())
 		.pipe(mustache({
 			css: '',
-			javascript: ''
+			javascript: fs.readFileSync(config.jsDir + name + '.js')
 		}))
 		.pipe(gulp.dest(config.mustache.dest))
 		.on('end', ((name) => {
 			return () => {
+				
+				//-------------------------------
 				// Minify html
 				gulp.src(config.mustache.dest + name + '.html')
 				.pipe(plumber())
@@ -38,6 +44,8 @@ module.exports = (done) => {
 				}))
 				.pipe(gulp.dest('./'))
 				.on('end', () => {
+					
+					//-------------------------------
 					// Check done or not
 					count ++;
 					if (count >= filePaths.length) {
