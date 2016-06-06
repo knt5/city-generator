@@ -3,6 +3,7 @@
   "name": "CityGenerator",
   "author": "knt5",
   "devDependencies": {
+    "browserify": "^13.0.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^2.0.0",
     "gulp-htmlhint": "^0.3.1",
