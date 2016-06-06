@@ -4,15 +4,15 @@ const lintScss = require('../modules/lint-scss');
 const lintHtml = require('../modules/lint-html');
 
 gulp.task('lint:js', function() {
-	lintJs();
+	return lintJs();
 });
 
 gulp.task('lint:scss', function() {
-	lintScss();
+	return lintScss();
 });
 
 gulp.task('lint:html', function() {
-	lintHtml();
+	return lintHtml();
 });
 
 gulp.task('lint', [
