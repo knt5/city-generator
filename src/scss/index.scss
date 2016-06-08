@@ -1,5 +1,8 @@
 body {
+	margin: 0;
+	padding: 0;
 	background: #000;
+	color: #fff;
 }
 
 .stage {
@@ -11,6 +14,28 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
+	width: 100%;
+}
+
+.city-canvas-status {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.building-generator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.user-interface {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 }
 
 .map {
