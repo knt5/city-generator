@@ -56,13 +56,13 @@ function reducePolygon(polygon) {
 function reduce(lngLatArray) {
 	let lngLat;
 	for (lngLat of lngLatArray) {
-		lngLat[0] = getReducedFloat(lngLat[0]);
-		lngLat[1] = getReducedFloat(lngLat[1]);
+		lngLat[0] = reduceFloat(lngLat[0]);
+		lngLat[1] = reduceFloat(lngLat[1]);
 	}
 }
 
 //=========================================================
-function getReducedFloat(n) {
+function reduceFloat(n) {
 	const d = 100000000;
 	let x = Math.round(n * d) / d;
 	return x;
