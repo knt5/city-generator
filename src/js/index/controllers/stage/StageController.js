@@ -24,6 +24,4 @@ export default class StageController {
 		this.resize($buildingGenerator, width, height);
 		this.resize($userInterface, width, height);
 	}
-	
-	
 }

@@ -15,9 +15,4 @@ export default class MapController {
 			zoom: 12
 		});
 	}
-	
-	
-	
-	
-	
 }

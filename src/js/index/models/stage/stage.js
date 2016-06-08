@@ -9,8 +9,4 @@ export default {
 	
 	// Map object of Google maps
 	map: null,
-	
-	
-	
-	
 };
