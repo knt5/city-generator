@@ -25,7 +25,7 @@ module.exports = {
 		'linebreak-style': [2, 'unix'],
 		'max-len': [2, {'code': 120, 'comments': 180, 'ignoreUrls': true}],
 		'no-alert': 2,
-		'no-console': 1,
+		'no-console': [1, {'allow': ['error']}],
 		'no-spaced-func': 2,
 		'no-trailing-spaces': [2, { 'skipBlankLines': true }],
 		'no-unused-vars': 1,
