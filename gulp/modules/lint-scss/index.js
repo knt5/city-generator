@@ -7,6 +7,6 @@ module.exports = () => {
 	return gulp.src(config.src)
 	.pipe(plumber())
 	.pipe(scsslint({
-		config: '/scsslint-rules.yml'
+		config: 'gulp/modules/lint-scss/scsslint-rules.yml'
 	}));
 };
