@@ -1,0 +1,36 @@
+@import './reset';
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	background: #000;
+	color: #fff;
+	font-size: 18px;
+	line-height: 1.4;
+	-webkit-text-size-adjust: 100%;  // for iOS Safari
+}
+
+body, input, select, textarea, th, td {
+	font-family: "Myriad Pro", "Lucida Grande", "GillSans",
+		"Hiragino Kaku Gothic Pro", "Meiryo", "sans-serif";
+}
+
+a {
+	color: #39f;
+}
+
+a:link, a:visited, a:active {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.clearfix::after {
+	content: '';
+	display: block;
+	clear: both;
+}

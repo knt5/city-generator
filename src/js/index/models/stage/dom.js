@@ -1,5 +1,5 @@
 //=========================================================
-// Stage layers
+// Layers
 let $stage = $('#stage');
 let $cityCanvas = $('#city-canvas');
 let $cityCanvasStatus = $('#city-canvas-status');
@@ -20,7 +20,7 @@ let $map = $('#map');
 
 //=========================================================
 export {
-	// layers
+	// Layers
 	$stage,
 	$cityCanvas,
 	$cityCanvasStatus,

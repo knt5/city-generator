@@ -1,47 +1,10 @@
-body {
-	margin: 0;
-	padding: 0;
-	background: #000;
-	color: #fff;
-}
+@import './base/base';
+@import './index/city-canvas';
+@import './index/city-canvas-status';
+@import './index/building-generator';
+@import './index/user-interface';
 
 .stage {
 	position: relative;
 	font-size: 10px;
-}
-
-.city-canvas {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-}
-
-.city-canvas-status {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-}
-
-.building-generator {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-}
-
-.user-interface {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-}
-
-.map {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	width: 360px;
-	height: 240px;
 }
