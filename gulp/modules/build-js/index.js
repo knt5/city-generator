@@ -32,8 +32,7 @@ module.exports = (done) => {
 			})
 			.bundle()
 			.on('error', function (error) {
-				console.error('Error: ' + error.message);
-				this.emit('end');
+				throw new Error(error.message);
 			})
 			.pipe(source(name + '.js'))
 			.pipe(gulp.dest(config.browserify.dest))

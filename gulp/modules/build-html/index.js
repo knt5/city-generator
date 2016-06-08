@@ -1,6 +1,5 @@
 const glob = require('glob');
 const path = require('path');
-const fs = require('fs');
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const mustache = require('gulp-mustache');
