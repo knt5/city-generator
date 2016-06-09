@@ -17,6 +17,3 @@ node_modules
 
 # Build assets
 /*.html
-
-# temp
-/assets/dat/
