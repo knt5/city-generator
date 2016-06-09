@@ -1,13 +1,19 @@
 @import './reset';
 
+//=========================================================
+// Box sizing
+
 *, *::before, *::after {
 	box-sizing: border-box;
 }
 
+//=========================================================
+// Elements
+
 body {
 	background: #000;
 	color: #fff;
-	font-size: 18px;
+	font-size: 14px;
 	line-height: 1.4;
 	-webkit-text-size-adjust: 100%;  // for iOS Safari
 }
@@ -29,8 +35,28 @@ a:hover {
 	text-decoration: underline;
 }
 
+//=========================================================
+// Clearfix
+
 .clearfix::after {
 	content: '';
 	display: block;
 	clear: both;
+}
+
+//=========================================================
+// Mobile visible control
+
+.visible-on-mobile {
+	display: none;
+}
+
+@media (max-width: 415px) {
+	.hidden-on-mobile {
+		display: none;
+	}
+	
+	.visible-on-mobile {
+		display: inline-block;
+	}
 }

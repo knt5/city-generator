@@ -7,3 +7,12 @@
 .stage {
 	position: relative;
 }
+
+@media (max-width: 415px) {
+	.github-ribbon {
+		img {
+			width: 74px;
+			height: 74px;
+		}
+	}
+}

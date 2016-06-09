@@ -5,10 +5,81 @@
 	width: 100%;
 }
 
+//=========================================================
+// Header
+
+.header {
+	padding: 10px 72px 10px 16px;
+	z-index: 1000;
+	
+	h1 {
+		font-size: 34px;
+		font-weight: normal;
+	}
+	
+	p {
+		font-size: 12px;
+	}
+}
+
+.facebook {
+	margin-top: 8px;
+}
+
+@media (max-width: 415px) {
+	.header {
+		padding: 10px 32px 10px 16px;
+	}
+}
+
+//=========================================================
+// Map
+
+$map-height: 320px;
+$mobile-map-height: 140px;
+
 .map {
 	position: absolute;
 	right: 0;
 	bottom: 0;
 	width: 360px;
-	height: 240px;
+	height: $map-height;
+}
+
+@media (max-width: 415px) {
+	.map {
+		width: 100%;
+		height: $mobile-map-height;
+	}
+}
+
+//=========================================================
+// City select
+
+.city-select-box {
+	position: relative;
+	margin: -12px 0 0 16px;
+}
+
+.city-select-title {
+	float: left;
+	margin-top: 4px;
+}
+
+.city-select {
+	display: block;
+	float: left;
+	opacity: 0.95;
+	margin-left: 6px;
+	padding: 3px 6px;
+	background: #fff;
+	color: #000;
+}
+
+@media (max-width: 415px) {
+	.city-select-box {
+		position: absolute;
+		width: 100%;
+		bottom: $mobile-map-height + 16;
+	}
 }
