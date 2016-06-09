@@ -30,7 +30,7 @@ module.exports = {
 		'no-trailing-spaces': [2, { 'skipBlankLines': true }],
 		'no-unused-vars': 1,
 		'no-whitespace-before-property': 2,
-		'quotes': [2, 'single'],
+		'quotes': [2, 'single', { 'allowTemplateLiterals': true }],
 		'semi': [2, 'always'],
 		'semi-spacing': [2, { 'before': false, 'after': true }],
 		'space-before-blocks': [2, 'always']
