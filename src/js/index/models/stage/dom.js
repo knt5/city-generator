@@ -1,10 +1,10 @@
 //=========================================================
 // Layers
-let $stage = $('#stage');
-let $cityCanvas = $('#city-canvas');
-let $cityCanvasStatus = $('#city-canvas-status');
-let $buildingGenerator = $('#building-generator');
-let $userInterface = $('#user-interface');
+export let $stage = $('#stage');
+export let $cityCanvas = $('#city-canvas');
+export let $cityCanvasStatus = $('#city-canvas-status');
+export let $buildingGenerator = $('#building-generator');
+export let $userInterface = $('#user-interface');
 
 //=========================================================
 // City canvas status layer
@@ -15,18 +15,8 @@ let $userInterface = $('#user-interface');
 //=========================================================
 // User interface layer
 
-// Google maps
-let $map = $('#map');
+// City select
+export let $citySelect = $('#city-select');
 
-//=========================================================
-export {
-	// Layers
-	$stage,
-	$cityCanvas,
-	$cityCanvasStatus,
-	$buildingGenerator,
-	$userInterface,
-	
-	// User interface layer
-	$map,
-};
+// Google maps
+export let $map = $('#map');
