@@ -1,4 +1,4 @@
-import cities from '../../models/data/cities';
+import cities from '../../models/stage/cities';
 import {
 	$stage,
 	$cityCanvas,
@@ -11,17 +11,24 @@ import {
 export default class StageController {
 	constructor() {
 		// Generate city select
-		let key;
-		for (key in cities) {
-			$citySelect.append(`<option value="${key}">${cities[key].name}</option>`);
+		for (let key in cities) {
+			let html = '';
+			html += `<option value="${key}">${cities[key].name}</option>`;
+			$citySelect.append(html);
 		}
 	}
 	
+	/**
+	 * Resize element
+	 */
 	resize($element, width, height) {
 		$element.width(width);
 		$element.height(height);
 	}
 	
+	/**
+	 * Resize stage and layers
+	 */
 	resizeStage(width, height) {
 		// TODO: Check Facebook app or not and change the height
 		
@@ -34,6 +41,4 @@ export default class StageController {
 		this.resize($buildingGenerator, width, height);
 		this.resize($userInterface, width, height);
 	}
-	
-	
 }

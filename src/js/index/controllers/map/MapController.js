@@ -5,7 +5,9 @@ export default class MapController {
 		this.$map = $map;
 	}
 	
-	// Initialize map (Google maps callback function)
+	/**
+	 * Initialize map (Google maps callback function)
+	 */
 	init() {
 		let el = this.$map.get(0);
 		

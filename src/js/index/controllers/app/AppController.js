@@ -2,6 +2,9 @@
 import stage from '../../models/stage/stage';
 
 export default class AppController {
+	/**
+	 * Setup application
+	 */
 	setup() {
 		// Register init callback of Google maps
 		window.initMap = () => {
@@ -15,9 +18,11 @@ export default class AppController {
 		this.onResize();
 	}
 	
+	/**
+	 * Window resize event hanlder
+	 */
 	onResize() {
 		let $window = $(window);
-		
 		let width = $window.width();
 		let height = $window.height();
 		
