@@ -1,4 +1,3 @@
-//import app from '../../models/app/app';
 import stage from '../../models/stage/stage';
 
 export default class AppController {

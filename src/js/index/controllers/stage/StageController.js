@@ -1,3 +1,4 @@
+import stage from '../../models/stage/stage';
 import cities from '../../models/stage/cities';
 import {
 	$stage,
@@ -10,12 +11,15 @@ import {
 
 export default class StageController {
 	constructor() {
-		// Generate city select
-		for (let key in cities) {
+		// Generate city select contents
+		for (let id in cities) {
 			let html = '';
-			html += `<option value="${key}">${cities[key].name}</option>`;
+			html += `<option value="${id}">${cities[id].name}</option>`;
 			$citySelect.append(html);
 		}
+		
+		// Register city select change event handler
+		$citySelect.on('change', this.onChangeCitySelect);
 	}
 	
 	/**
@@ -40,5 +44,13 @@ export default class StageController {
 		this.resize($cityCanvasStatus, width, height);
 		this.resize($buildingGenerator, width, height);
 		this.resize($userInterface, width, height);
+	}
+	
+	/**
+	 * City select change event handler
+	 */
+	onChangeCitySelect() {
+		let id = $citySelect.val();
+		stage.mapController.changeCity(id);
 	}
 }
