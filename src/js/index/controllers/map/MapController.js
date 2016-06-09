@@ -12,7 +12,19 @@ export default class MapController {
 		// Create google map object
 		stage.map = new google.maps.Map(el, {
 			center: { lat: 35.67510369, lng: 139.76808639 },
-			zoom: 12
+			zoom: 13
 		});
+	}
+	
+	addCity() {
+		// Check city cache
+		
+		
+		// Load city GeoJSON and DSM/DEM images if needed
+		
+		
+		// Add city GeoJSON to map
+		
+		
 	}
 }
