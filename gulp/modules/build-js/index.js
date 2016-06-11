@@ -28,7 +28,10 @@ module.exports = (done) => {
 				extensions: ['.js']
 			})
 			.transform(babelify, {
-				presets: ['es2015']
+				presets: ['es2015'],
+				plugins: [
+					'transform-exponentiation-operator'
+				]
 			})
 			.bundle()
 			.on('error', function (error) {

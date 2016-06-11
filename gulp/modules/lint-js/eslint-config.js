@@ -11,7 +11,8 @@ module.exports = {
 		'dat': true
 	},
 	parserOptions: {
-		sourceType: 'module'
+		sourceType: 'module',
+		ecmaVersion: 7
 	},
 	rules: {
 		'camelcase': 2,
