@@ -1,11 +1,9 @@
-import StageController from '../../controllers/stage/StageController';
-import MapController from '../../controllers/map/MapController';
-import { $map } from '../../models/stage/dom';
-
 export default {
 	// Controllers
-	controller: new StageController(),
-	mapController: new MapController($map),
+	controller: null,
+	mapController: null,
+	buildingGeneratorController: null,
+	buildingCanvasController: null,
 	
 	// Map object of Google maps
 	map: null,

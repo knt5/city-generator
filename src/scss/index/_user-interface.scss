@@ -3,6 +3,7 @@
 	top: 0;
 	left: 0;
 	width: 100%;
+	pointer-events: none;
 }
 
 //=========================================================
@@ -11,6 +12,7 @@
 .header {
 	padding: 10px 72px 10px 16px;
 	z-index: 1000;
+	pointer-events: all;
 	
 	h1 {
 		font-size: 34px;
@@ -40,6 +42,7 @@ $mobile-map-height: 140px;
 
 .map {
 	position: absolute;
+	pointer-events: all;
 	right: 0;
 	bottom: 0;
 	width: 360px;
@@ -58,6 +61,7 @@ $mobile-map-height: 140px;
 
 .city-select-box {
 	position: relative;
+	pointer-events: all;
 	margin: -12px 0 0 16px;
 }
 
@@ -69,7 +73,7 @@ $mobile-map-height: 140px;
 .city-select {
 	display: block;
 	float: left;
-	opacity: 0.95;
+	opacity: .95;
 	margin-left: 6px;
 	padding: 3px 6px;
 	background: #fff;

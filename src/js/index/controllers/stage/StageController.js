@@ -1,16 +1,28 @@
 import stage from '../../models/stage/stage';
 import cities from '../../models/stage/cities';
+import Building from '../../models/stage/Building';
 import {
 	$stage,
+	$map,
 	$cityCanvas,
 	$cityCanvasStatus,
 	$buildingGenerator,
 	$userInterface,
 	$citySelect,
 } from '../../models/stage/dom';
+import MapController from './MapController';
+import BuildingGeneratorController from './BuildingGeneratorController';
+import BuildingCanvasController from './BuildingCanvasController';
+import CityCanvasController from './CityCanvasController';
 
 export default class StageController {
 	constructor() {
+		// Create controllers of stage children
+		stage.mapController = new MapController($map);
+		stage.buildingGeneratorController = new BuildingGeneratorController();
+		stage.buildingCanvasController = new BuildingCanvasController();
+		stage.cityCanvasController = new CityCanvasController();
+		
 		// Generate city select contents
 		for (let id in cities) {
 			let html = '';
@@ -39,11 +51,18 @@ export default class StageController {
 		// Resize stage
 		this.resize($stage, width, height);
 		
-		// Resize stage children
+		// Resize stage layers
 		this.resize($cityCanvas, width, height);
 		this.resize($cityCanvasStatus, width, height);
 		this.resize($buildingGenerator, width, height);
 		this.resize($userInterface, width, height);
+		
+		// Reset building generator layer
+		stage.buildingGeneratorController.resetLayer(width, height);
+		
+		// Call resize() of canvas controller
+		stage.cityCanvasController.resize(width, height);
+		stage.buildingCanvasController.resize();
 	}
 	
 	/**
@@ -51,6 +70,33 @@ export default class StageController {
 	 */
 	onChangeCitySelect() {
 		let id = $citySelect.val();
-		stage.mapController.changeCity(id);
+		
+		// Change city
+		stage.mapController.changeCity(id, (city) => {
+			
+			for (let feature of city.geo.features) {
+				let building = new Building(feature);
+
+				let geometry = new THREE.ExtrudeGeometry(building.shape, {
+					amount: 20,
+					bevelThickness: 0,
+					bevelSize: 0,
+					bevelSegments: 0,
+					bevelEnabled: false,
+					curveSegments: 1,
+					steps: 1
+				});
+
+				//geometry.applyMatrix(new THREE.Matrix4().makeTranslation(-20, 0, 0));
+
+				let material = new THREE.MeshStandardMaterial({
+					color: '#93ca76'
+				});
+
+				let mesh = new THREE.Mesh(geometry, material);
+
+				stage.buildingCanvasController.scene.add(mesh);
+			}
+		});
 	}
 }

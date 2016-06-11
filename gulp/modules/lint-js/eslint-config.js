@@ -19,7 +19,7 @@ module.exports = {
 		'comma-style': [2, 'last'],
 		'computed-property-spacing': [2, 'never'],
 		'eol-last': 2,
-		'indent': [2, 'tab'],
+		'indent': [2, 'tab', { 'SwitchCase': 1 }],
 		'key-spacing': [2, {'beforeColon': false, 'afterColon': true}],
 		'keyword-spacing': 2,
 		'linebreak-style': [2, 'unix'],

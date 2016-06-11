@@ -12,8 +12,13 @@ export let $userInterface = $('#user-interface');
 //=========================================================
 // Building generator layer
 
+export let $buildingCanvas = $('#building-canvas');
+
 //=========================================================
 // User interface layer
+
+// Header
+export let $header = $('#header');
 
 // City select
 export let $citySelect = $('#city-select');
