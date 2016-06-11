@@ -4,6 +4,7 @@ export default {
 	mapController: null,
 	buildingGeneratorController: null,
 	buildingCanvasController: null,
+	cityCanvasController: null,
 	
 	// Map object of Google maps
 	map: null,

@@ -1,6 +1,5 @@
 import stage from '../../models/stage/stage';
 import cities from '../../models/stage/cities';
-import Building from '../../models/stage/Building';
 import {
 	$stage,
 	$map,
@@ -10,10 +9,12 @@ import {
 	$userInterface,
 	$citySelect,
 } from '../../models/stage/dom';
+import Building from '../../models/stage/Building';
 import MapController from './MapController';
 import BuildingGeneratorController from './BuildingGeneratorController';
 import BuildingCanvasController from './BuildingCanvasController';
 import CityCanvasController from './CityCanvasController';
+import cityUtil from '../../utils/cityUtil';
 
 export default class StageController {
 	constructor() {
@@ -74,11 +75,40 @@ export default class StageController {
 		// Change city
 		stage.mapController.changeCity(id, (city) => {
 			
+			// Make city bounds, delta lat/lng and cneter
+			if (city.south === undefined) {
+				cityUtil.updateCityBounds(city);
+				
+				console.log(city);
+			}
+			
+			// Generate buildings
 			for (let feature of city.geo.features) {
-				let building = new Building(feature);
-
+				let building = new Building(feature, city);
+				let amount;
+				let color;
+				
+				switch (feature.properties.type) {
+					case 0:
+						amount = 1;
+						color = '#ffec47';
+						break;
+					case 1:
+						amount = 2;
+						color = '#93ca76';
+						break;
+					case 2:
+						amount = 0.5;
+						color = '#ec6800';
+						break;
+					case 3:
+						amount = 6;
+						color = '#2ca9e1';
+						break;
+				}
+				
 				let geometry = new THREE.ExtrudeGeometry(building.shape, {
-					amount: 20,
+					amount,
 					bevelThickness: 0,
 					bevelSize: 0,
 					bevelSegments: 0,
@@ -86,15 +116,15 @@ export default class StageController {
 					curveSegments: 1,
 					steps: 1
 				});
-
+				
 				//geometry.applyMatrix(new THREE.Matrix4().makeTranslation(-20, 0, 0));
-
+				
 				let material = new THREE.MeshStandardMaterial({
-					color: '#93ca76'
+					color,
 				});
-
+				
 				let mesh = new THREE.Mesh(geometry, material);
-
+				
 				stage.buildingCanvasController.scene.add(mesh);
 			}
 		});

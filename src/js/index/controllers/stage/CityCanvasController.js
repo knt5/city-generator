@@ -56,9 +56,23 @@ export default class CityCanvasController {
 	 *
 	 */
 	render() {
-		// this.trackball.update();
+		/*
+		let self = stage.cityCanvasController;
+		// self.trackball.update();
+		self.scene.updateMatrixWorld();
+		self.renderer.render(self.scene, self.camera);
+		*/
 		this.scene.updateMatrixWorld();
 		this.renderer.render(this.scene, this.camera);
+	}
+	
+	/**
+	 *
+	 */
+	animate() {
+		let self = stage.cityCanvasController;
+		self.render();
+		requestAnimationFrame(self.animate);
 	}
 	
 	/**
@@ -71,5 +85,4 @@ export default class CityCanvasController {
 			this.renderer.setSize(width, height);
 		}
 	}
-	
 }

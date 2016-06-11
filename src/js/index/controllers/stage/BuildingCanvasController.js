@@ -3,7 +3,7 @@ import {
 	$buildingCanvas,
 } from '../../models/stage/dom';
 
-let radius = 100;
+let radius = 200;
 let theta = -1;
 
 export default class BuildingCanvasController {
@@ -19,8 +19,8 @@ export default class BuildingCanvasController {
 		
 		// Camera
 		this.camera = new THREE.PerspectiveCamera(45, $buildingCanvas.width() / $buildingCanvas.height(), 1, 1000);
-		this.camera.position.set(radius/1.5, radius/1.5, radius);
-		this.camera.lookAt(this.scene.position);
+		this.camera.position.set(0, -radius, radius/2);
+		this.camera.lookAt(0);
 		
 		// Renderer
 		this.renderer = new THREE.WebGLRenderer();
@@ -60,13 +60,18 @@ export default class BuildingCanvasController {
 		let self = stage.buildingCanvasController;
 		
 		// Rotate
-		theta += 0.4;
-		//self.camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
-		//self.camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
+		/*
+		theta += 0.5;
+		self.camera.position.x = radius * Math.cos(THREE.Math.degToRad(theta));
+		self.camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta));
 		//self.camera.lookAt(self.scene.position);
+		//self.camera.lookAt(0);
+		//*/
 		
+		// Control
 		self.trackball.update();
 		
+		// Render
 		self.scene.updateMatrixWorld();
 		self.renderer.render(self.scene, self.camera);
 	}
