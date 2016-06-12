@@ -4,14 +4,16 @@
 	left: 0;
 	width: 100%;
 	opacity: .9;
+	pointer-events: none;
 }
 
 //=========================================================
 
 .building-canvas {
+	// top, left, width and height are controlled by JS
 	box-sizing: content-box;
 	display: none;  // will be removed by JS
 	position: absolute;
+	pointer-events: all;
 	border: 4px solid #fff;
-	// Control in JS: top, left, width and height
 }

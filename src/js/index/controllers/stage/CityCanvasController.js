@@ -1,9 +1,10 @@
-//import stage from '../../models/stage/stage';
+import stage from '../../models/stage/stage';
 import {
 	$cityCanvas,
 } from '../../models/stage/dom';
 
 let radius = 145;
+let cameraHeight = 50;
 
 export default class CityCanvasController {
 	constructor() {
@@ -18,7 +19,7 @@ export default class CityCanvasController {
 		
 		// Camera
 		this.camera = new THREE.PerspectiveCamera(45, $cityCanvas.width() / $cityCanvas.height(), 1, 1000);
-		this.camera.position.set(radius/1.5, radius/2.5, radius);
+		this.camera.position.set(0, -radius, cameraHeight);
 		this.camera.lookAt(this.scene.position);
 		
 		// Renderer
@@ -27,8 +28,8 @@ export default class CityCanvasController {
 		$cityCanvas.append(this.renderer.domElement);
 		
 		// Trackball
-		//this.trackball = new THREE.TrackballControls(this.camera, $cityCanvas.get(0));
-		//this.trackball.staticMoving = true;
+		this.trackball = new THREE.TrackballControls(this.camera, $cityCanvas.get(0));
+		this.trackball.staticMoving = true;
 		
 		// Directional light
 		this.directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -49,21 +50,24 @@ export default class CityCanvasController {
 		this.scene.add(this.gridHelper);
 		
 		// Call render at first
-		this.render();
+		//this.render();
+		
+		// Start animation
+		this.animate();
 	}
 	
 	/**
 	 *
 	 */
 	render() {
-		/*
 		let self = stage.cityCanvasController;
-		// self.trackball.update();
+		
+		// Control
+		self.trackball.update();
+		
+		// Render
 		self.scene.updateMatrixWorld();
 		self.renderer.render(self.scene, self.camera);
-		*/
-		this.scene.updateMatrixWorld();
-		this.renderer.render(this.scene, this.camera);
 	}
 	
 	/**

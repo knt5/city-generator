@@ -15,7 +15,7 @@ export default class BuildingCanvasController {
 		// Scene
 		this.scene = new THREE.Scene();
 		this.scene.autoUpdate = false;
-		this.scene.fog = new THREE.Fog(0xffffff, 100, 1200);
+		this.scene.fog = new THREE.Fog(0xffffff, 100, 800);
 		
 		// Camera
 		this.camera = new THREE.PerspectiveCamera(45, $buildingCanvas.width() / $buildingCanvas.height(), 1, 1000);
@@ -50,7 +50,7 @@ export default class BuildingCanvasController {
 		this.scene.add(this.gridHelper);
 		
 		// Start animation
-		this.animate();
+		//this.animate();
 	}
 	
 	/**

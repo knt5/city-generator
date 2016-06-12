@@ -3,23 +3,50 @@ import projectionUtil from '../../utils/projectionUtil';
 export default class Building {
 	constructor(feature, city) {
 		let coordinates = feature.geometry.coordinates;
+		let type = feature.geometry.type;
 		
 		// Make shape
-		if (feature.geometry.type === 'MultiPolygon') {
+		if (type === 'MultiPolygon') {
 			this.shape = getShapes(coordinates, city);
-		} else if (feature.geometry.type === 'Polygon') {
+		} else if (type === 'Polygon') {
 			this.shape = getShape(coordinates, city);
 		} else {
-			console.error('Unkown feature geometry type: ' + feature.geometry.type);
+			console.error('Unkown feature geometry type: ' + type);
 		}
-	}
-	
-	setHeight(height) {
-		this.height = height;
+		
+		// Make height
+		if (feature.properties.height !== undefined) {
+			this.height = feature.properties.height;
+		} else {
+			this.height = getHeight(feature);
+		}
 	}
 }
 
 //=========================================================
+// Height
+
+function getHeight(feature) {
+	let type = feature.geometry.type;
+	
+	if (type === 'MultiPolygon') {
+		
+		
+		
+	} else if (type === 'Polygon') {
+		
+		
+		
+	}
+	
+	return 1;
+	
+	
+	
+}
+
+//=========================================================
+// Shape
 
 function getShapes(multiPolygon, city) {
 	let shapes = [];

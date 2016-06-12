@@ -82,13 +82,19 @@ export default class StageController {
 				console.log(city);
 			}
 			
+			//=============================================
 			// Generate buildings
 			for (let feature of city.geo.features) {
+				//-----------------------------------------
+				// Generate building mesh
+				
 				let building = new Building(feature, city);
+				let type = feature.properties.type;
+				let fid = feature.properties.fid;
 				let amount;
 				let color;
 				
-				switch (feature.properties.type) {
+				switch (type) {
 					case 0:
 						amount = 1;
 						color = '#ffec47';
@@ -117,16 +123,75 @@ export default class StageController {
 					steps: 1
 				});
 				
-				//geometry.applyMatrix(new THREE.Matrix4().makeTranslation(-20, 0, 0));
-				
 				let material = new THREE.MeshStandardMaterial({
 					color,
 				});
 				
 				let mesh = new THREE.Mesh(geometry, material);
 				
+				//-----------------------------------------
+				// Save building mesh
+				
+				if (!city.buildings) {
+					city.buildings = {};
+				}
+				
+				if (!city.buildings[fid]) {
+					city.buildings[fid] = {};
+				}
+				
+				city.buildings[fid].mesh = mesh;
+				
+				//-----------------------------------------
+				// Generate city mesh (merge)
+				
+				if (!city.geometries) {
+					city.geometries = {};
+				}
+				
+				if (!city.geometries[type]) {
+					city.geometries[type] = new THREE.Geometry();
+				}
+				
+				city.geometries[type].mergeMesh(mesh);
+				
+				//-----------------------------------------
 				stage.buildingCanvasController.scene.add(mesh);
 			}
+			
+			//=============================================
+			// Add merged geometry to city canvas
+			for (let type in city.geometries) {
+				let color;
+				
+				console.log(city.geometries);
+				console.log(type);
+				
+				switch (type) {
+					case 0:
+						color = '#ffec47';
+						break;
+					case 1:
+						color = '#93ca76';
+						break;
+					case 2:
+						color = '#ec6800';
+						break;
+					case 3:
+						color = '#2ca9e1';
+						break;
+				}
+				
+				let material = new THREE.MeshStandardMaterial({
+					color,
+				});
+				
+				let cityMesh = new THREE.Mesh(city.geometries[type], material);
+				
+				stage.cityCanvasController.scene.add(cityMesh);
+			}
+			
+			stage.cityCanvasController.render();
 		});
 	}
 }
