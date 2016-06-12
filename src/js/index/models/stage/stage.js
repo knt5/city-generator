@@ -2,7 +2,7 @@ export default {
 	// Controllers
 	controller: null,
 	mapController: null,
-	buildingGeneratorController: null,
+	buildingPreviewController: null,
 	buildingCanvasController: null,
 	cityCanvasController: null,
 	

@@ -3,14 +3,14 @@
 export let $stage = $('#stage');
 export let $cityCanvas = $('#city-canvas');
 export let $cityCanvasStatus = $('#city-canvas-status');
-export let $buildingGenerator = $('#building-generator');
+export let $buildingPreview = $('#building-preview');
 export let $userInterface = $('#user-interface');
 
 //=========================================================
 // City canvas status layer
 
 //=========================================================
-// Building generator layer
+// Building preview layer
 
 export let $buildingCanvas = $('#building-canvas');
 

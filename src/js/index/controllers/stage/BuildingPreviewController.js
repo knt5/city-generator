@@ -23,7 +23,7 @@ const buildingCanvas = {
 let firstCallOfResetLayer = true;
 
 //=========================================================
-export default class BuildingGeneratorController {
+export default class BuildingPreviewController {
 	constructor() {
 	}
 	

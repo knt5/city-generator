@@ -5,13 +5,13 @@ import {
 	$map,
 	$cityCanvas,
 	$cityCanvasStatus,
-	$buildingGenerator,
+	$buildingPreview,
 	$userInterface,
 	$citySelect,
 } from '../../models/stage/dom';
 import Building from '../../models/stage/Building';
 import MapController from './MapController';
-import BuildingGeneratorController from './BuildingGeneratorController';
+import BuildingPreviewController from './BuildingPreviewController';
 import BuildingCanvasController from './BuildingCanvasController';
 import CityCanvasController from './CityCanvasController';
 import cityUtil from '../../utils/cityUtil';
@@ -20,7 +20,7 @@ export default class StageController {
 	constructor() {
 		// Create controllers of stage children
 		stage.mapController = new MapController($map);
-		stage.buildingGeneratorController = new BuildingGeneratorController();
+		stage.buildingPreviewController = new BuildingPreviewController();
 		stage.buildingCanvasController = new BuildingCanvasController();
 		stage.cityCanvasController = new CityCanvasController();
 		
@@ -55,11 +55,11 @@ export default class StageController {
 		// Resize stage layers
 		this.resize($cityCanvas, width, height);
 		this.resize($cityCanvasStatus, width, height);
-		this.resize($buildingGenerator, width, height);
+		this.resize($buildingPreview, width, height);
 		this.resize($userInterface, width, height);
 		
-		// Reset building generator layer
-		stage.buildingGeneratorController.resetLayer(width, height);
+		// Reset building preview layer
+		stage.buildingPreviewController.resetLayer(width, height);
 		
 		// Call resize() of canvas controller
 		stage.cityCanvasController.resize(width, height);
