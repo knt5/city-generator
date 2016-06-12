@@ -5,8 +5,8 @@ export default {
 		if (city.geo) {
 			// Lat lng bounds
 			city.south = 1000;
-			city.north = -1000;
 			city.west = 1000;
+			city.north = -1000;
 			city.east = -1000;
 			
 			for (let feature of city.geo.features) {

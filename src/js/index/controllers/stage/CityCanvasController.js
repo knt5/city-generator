@@ -52,7 +52,7 @@ export default class CityCanvasController {
 			delete this.directionalLight;
 		}
 		this.directionalLight = new THREE.DirectionalLight(0xffffff);
-		this.directionalLight.position.set(0, 100, 20);
+		this.directionalLight.position.set(-10, -50, 30);
 		this.directionalLight.castShadow = true;
 		this.scene.add(this.directionalLight);
 		

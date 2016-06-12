@@ -67,26 +67,36 @@ export default class MapController {
 				// Add city
 				addCity(city);
 				
-				// Done
-				callback(city);
+				//-----------------------------------------
+				// Load DSM image
+				let dsmImage = new Image();
+				dsmImage.src = `assets/dat/${id}.dsm.png`;
+				dsmImage.onload = () => {
+					// Save image
+					city.dsm.image = dsmImage;
+					
+					// Create DSM points
+					createElevationPoints(city.dsm);
+					
+					// Add DSM to map
+					addDsm(city);
+					
+					//-------------------------------------
+					// Load DEM image
+					let demImage = new Image();
+					demImage.src = `assets/dat/${id}.dem.png`;
+					demImage.onload = () => {
+						// Save image
+						city.dem.image = demImage;
+						
+						// Create DEM points
+						createElevationPoints(city.dem);
+						
+						// Done
+						callback(city);
+					};
+				};
 			});
-			
-			//---------------------------------------------
-			// Load DSM image
-			let dsmImage = new Image();
-			dsmImage.src = `assets/dat/${id}.dsm.png`;
-			dsmImage.onload = () => {
-				city.dsm.image = dsmImage;
-				addDsm(city);
-			};
-			
-			//---------------------------------------------
-			// Load DEM image
-			let demImage = new Image();
-			demImage.src = `assets/dat/${id}.dem.png`;
-			demImage.onload = () => {
-				city.dem.image = demImage;
-			};
 			
 		} else {
 			setCenter(city.center);
@@ -98,6 +108,37 @@ export default class MapController {
 }
 
 //=========================================================
+// Elevation points data
+
+function createElevationPoints(container) {
+	container.points = [];
+	
+	// Create canvas
+	container.canvas = document.createElement('canvas');
+	
+	// Get context
+	let context = container.canvas.getContext('2d');
+	
+	// Draw image
+	context.drawImage(container.image, 0, 0);
+	
+	// Get image data
+	let imageData = context.getImageData(0, 0, container.image.width, container.image.height);
+	
+	// Create elevation points data
+	for (let y=0; y<container.image.height; y++) {
+		container.points.push([]);
+		for (let x=0; x<container.image.width; x++) {
+			container.points[y].push(imageData.data[
+				x * 4 +
+				(container.image.height - y + 1) * container.image.width * 4
+			]);
+		}
+	}
+}
+
+//=========================================================
+// Map
 
 /**
  * Add city GeoJSON to map
@@ -137,6 +178,7 @@ function addDsm(city) {
 }
 
 //=========================================================
+// Data layer of map
 
 function setStyle(feature) {
 	let type = feature.getProperty('type');
@@ -165,4 +207,3 @@ function setStyle(feature) {
 	
 	return style;
 }
-

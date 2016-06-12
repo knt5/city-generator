@@ -15,6 +15,7 @@ import BuildingPreviewController from './BuildingPreviewController';
 import BuildingCanvasController from './BuildingCanvasController';
 import CityCanvasController from './CityCanvasController';
 import cityUtil from '../../utils/cityUtil';
+import heightPredictionUtil from '../../utils/heightPredictionUtil';
 
 export default class StageController {
 	constructor() {
@@ -137,6 +138,11 @@ export default class StageController {
 				});
 				
 				let mesh = new THREE.Mesh(geometry, material);
+				
+				// Elevation
+				let elevation = heightPredictionUtil.getElevation(building, city);
+				console.log(elevation);
+				mesh.position.z += elevation;
 				
 				//-----------------------------------------
 				// Save building mesh

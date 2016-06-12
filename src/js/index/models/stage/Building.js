@@ -1,4 +1,5 @@
 import projectionUtil from '../../utils/projectionUtil';
+import heightPredictionUtil from '../../utils/heightPredictionUtil';
 
 export default class Building {
 	constructor(feature, city) {
@@ -7,9 +8,9 @@ export default class Building {
 		
 		// Bounds
 		this.south = 1000;
+		this.west = 1000;
 		this.north = -1000;
-		this.east = 1000;
-		this.west = -1000;
+		this.east = -1000;
 		
 		// Shape and bounds
 		if (type === 'MultiPolygon') {
@@ -31,67 +32,8 @@ export default class Building {
 		};
 		
 		// Height
-		if (feature.properties.height !== undefined) {
-			this.height = feature.properties.height;
-		} else {
-			// Prediction
-			this.height = getHeight(feature);
-		}
+		this.height = heightPredictionUtil.getHeight(feature, this, city);
 	}
-}
-
-//=========================================================
-// Height
-
-const maxHeight = {
-	'0': 1.5,  //  15m
-	'1': 30,   // 300m
-	'2': 0.5,  //   5m
-	'3': 20,   // 200m
-};
-
-const minHeight = {
-	'0': 0.5,  //  5m
-	'1': 1.5,  // 15m
-	'2': 0.3,  //  3m
-	'3': 1.5,  // 15m
-};
-
-function getHeight(feature) {
-	let type = feature.properties.type;
-	let height = 1;
-	
-	// Basic height by type
-	switch (type) {
-		case 0:
-			height = 1;
-			break;
-		case 1:
-			height = 2;
-			break;
-		case 2:
-			height = 0.5;
-			break;
-		case 3:
-			height = 6;
-			break;
-	}
-	
-	// Height prediction
-	if (feature.geometry.type === 'MultiPolygon') {
-		
-	} else if (feature.geometry.type === 'Polygon') {
-		
-	}
-	
-	// Cap height
-	if (height > maxHeight[type]) {
-		height = maxHeight[type];
-	} else if (height < minHeight[type]) {
-		height = minHeight[type];
-	}
-	
-	return height;
 }
 
 //=========================================================
