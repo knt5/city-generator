@@ -93,8 +93,6 @@ export default class StageController {
 			//=============================================
 			// Generate buildings
 			
-			let previousBuildingMesh;
-			
 			// Init building scene
 			stage.buildingCanvasController.rebuild();
 			
@@ -165,23 +163,6 @@ export default class StageController {
 				}
 				
 				city.geometries[type].mergeMesh(mesh);
-				
-				//-----------------------------------------
-				// Preview generated building
-				
-				// Remove previous building mesh
-				if (previousBuildingMesh) {
-					stage.buildingCanvasController.scene.remove(previousBuildingMesh);
-				}
-				
-				// Add building mesh
-				stage.buildingCanvasController.scene.add(mesh);
-				
-				// Save previous building mesh to remove next time
-				previousBuildingMesh = mesh;
-				
-				// Render preview canvas
-				stage.buildingCanvasController.render();
 			}
 			
 			//=============================================
