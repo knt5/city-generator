@@ -14,6 +14,7 @@
 	box-sizing: content-box;
 	display: none;  // will be removed by JS
 	position: absolute;
-	pointer-events: all;
 	border: 4px solid #fff;
+	//pointer-events: none;
+	pointer-events: all;
 }

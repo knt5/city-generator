@@ -75,6 +75,16 @@ export default class StageController {
 		// Change city
 		stage.mapController.changeCity(id, (city) => {
 			
+			//=============================================
+			// Stop animation
+			
+			// Stop city animation
+			stage.cityCanvasController.stopAnimation();
+			
+			// Stop building animation
+			stage.buildingCanvasController.stopAnimation();
+			
+			//=============================================
 			// Make city bounds, delta lat/lng and cneter
 			if (city.south === undefined) {
 				cityUtil.updateCityBounds(city);
@@ -82,6 +92,13 @@ export default class StageController {
 			
 			//=============================================
 			// Generate buildings
+			
+			let previousBuildingMesh;
+			
+			// Init building scene
+			stage.buildingCanvasController.rebuild();
+			
+			// Generate
 			for (let feature of city.geo.features) {
 				//-----------------------------------------
 				// Generate building mesh
@@ -137,7 +154,7 @@ export default class StageController {
 				city.buildings[fid].mesh = mesh;
 				
 				//-----------------------------------------
-				// Generate city mesh (merge)
+				// Merge building mesh to city mesh
 				
 				if (!city.geometries) {
 					city.geometries = {};
@@ -150,11 +167,30 @@ export default class StageController {
 				city.geometries[type].mergeMesh(mesh);
 				
 				//-----------------------------------------
-				//stage.buildingCanvasController.scene.add(mesh);
+				// Preview generated building
+				
+				// Remove previous building mesh
+				if (previousBuildingMesh) {
+					stage.buildingCanvasController.scene.remove(previousBuildingMesh);
+				}
+				
+				// Add building mesh
+				stage.buildingCanvasController.scene.add(mesh);
+				
+				// Save previous building mesh to remove next time
+				previousBuildingMesh = mesh;
+				
+				// Render preview canvas
+				stage.buildingCanvasController.render();
 			}
 			
 			//=============================================
 			// Add merged geometry to city canvas
+			
+			// Init city scene
+			stage.cityCanvasController.rebuild();
+			
+			// Add mesh
 			for (let type in city.geometries) {
 				let color;
 				
@@ -182,10 +218,12 @@ export default class StageController {
 				
 				let cityMesh = new THREE.Mesh(city.geometries[type], material);
 				
+				// Add mesh to scene
 				stage.cityCanvasController.scene.add(cityMesh);
 			}
 			
-			stage.cityCanvasController.render();
+			stage.cityCanvasController.animate();
+			//stage.cityCanvasController.render();
 		});
 	}
 }
