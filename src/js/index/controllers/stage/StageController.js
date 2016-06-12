@@ -78,8 +78,6 @@ export default class StageController {
 			// Make city bounds, delta lat/lng and cneter
 			if (city.south === undefined) {
 				cityUtil.updateCityBounds(city);
-				
-				console.log(city);
 			}
 			
 			//=============================================
@@ -91,24 +89,20 @@ export default class StageController {
 				let building = new Building(feature, city);
 				let type = feature.properties.type;
 				let fid = feature.properties.fid;
-				let amount;
+				let amount = building.height;
 				let color;
 				
 				switch (type) {
 					case 0:
-						amount = 1;
 						color = '#ffec47';
 						break;
 					case 1:
-						amount = 2;
 						color = '#93ca76';
 						break;
 					case 2:
-						amount = 0.5;
 						color = '#ec6800';
 						break;
 					case 3:
-						amount = 6;
 						color = '#2ca9e1';
 						break;
 				}
