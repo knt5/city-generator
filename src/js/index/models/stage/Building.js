@@ -70,6 +70,7 @@ function getShape(polygon, city) {
 			// interior ring
 			shape.holes.push(new THREE.Path(getVector2Array(ring, city)));
 		}
+		i++;
 	}
 	
 	return shape;
