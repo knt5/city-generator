@@ -156,7 +156,7 @@ export default class StageController {
 				city.geometries[type].mergeMesh(mesh);
 				
 				//-----------------------------------------
-				stage.buildingCanvasController.scene.add(mesh);
+				//stage.buildingCanvasController.scene.add(mesh);
 			}
 			
 			//=============================================
@@ -164,21 +164,21 @@ export default class StageController {
 			for (let type in city.geometries) {
 				let color;
 				
-				console.log(city.geometries);
-				console.log(type);
+				// Convert string to number for switch
+				type = parseInt(type);
 				
 				switch (type) {
 					case 0:
-						color = '#ffec47';
+						color = '#fef263';
 						break;
 					case 1:
-						color = '#93ca76';
+						color = '#cee4ae';
 						break;
 					case 2:
-						color = '#ec6800';
+						color = '#f19072';
 						break;
 					case 3:
-						color = '#2ca9e1';
+						color = '#a0d8ef';
 						break;
 				}
 				
