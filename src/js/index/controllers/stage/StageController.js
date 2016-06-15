@@ -106,42 +106,24 @@ export default class StageController {
 				let type = feature.properties.type;
 				let fid = feature.properties.fid;
 				let amount = building.height;
-				let color;
-				
-				switch (type) {
-					case 0:
-						color = '#ffec47';
-						break;
-					case 1:
-						color = '#93ca76';
-						break;
-					case 2:
-						color = '#ec6800';
-						break;
-					case 3:
-						color = '#2ca9e1';
-						break;
-				}
 				
 				let geometry = new THREE.ExtrudeGeometry(building.shape, {
 					amount,
-					bevelThickness: 0,
-					bevelSize: 0,
-					bevelSegments: 0,
-					bevelEnabled: false,
+					bevelThickness: 0.1,
+					bevelSize: 0.1,
+					bevelSegments: 1,
+					bevelEnabled: true,
 					curveSegments: 1,
 					steps: 1
 				});
 				
 				let material = new THREE.MeshStandardMaterial({
-					color,
 				});
 				
 				let mesh = new THREE.Mesh(geometry, material);
 				
 				// Elevation
 				let elevation = heightPredictionUtil.getElevation(building, city);
-				console.log(elevation);
 				mesh.position.z += elevation;
 				
 				//-----------------------------------------
@@ -175,32 +157,48 @@ export default class StageController {
 			// Add merged geometry to city canvas
 			
 			// Init city scene
-			stage.cityCanvasController.rebuild();
+			stage.cityCanvasController.rebuild(city);
 			
 			// Add mesh
 			for (let type in city.geometries) {
 				let color;
+				
+				// Calc normals
+				city.geometries[type].computeVertexNormals();
 				
 				// Convert string to number for switch
 				type = parseInt(type);
 				
 				switch (type) {
 					case 0:
-						color = '#fef263';
+						color = 0xfef263;
 						break;
 					case 1:
-						color = '#cee4ae';
+						color = 0xcee4ae;
 						break;
 					case 2:
-						color = '#f19072';
+						color = 0xf19072;
 						break;
 					case 3:
-						color = '#a0d8ef';
+						color = 0xa0d8ef;
 						break;
 				}
-				
+				/*
 				let material = new THREE.MeshStandardMaterial({
-					color,
+					color: 0x333333,
+					roughness: 0.25,
+					metalness: 0.85,
+					emissive: color,
+					emissiveIntensity: 0.2,
+					envMap: stage.cityCanvasController.envMap,
+				});
+				*/
+				let material = new THREE.MeshPhongMaterial({
+					color: 0x333333,
+					emissive: color,
+					emissiveIntensity: 0.5,
+					envMap: stage.cityCanvasController.envMap,
+					reflectivity: 0.6,
 				});
 				
 				let cityMesh = new THREE.Mesh(city.geometries[type], material);

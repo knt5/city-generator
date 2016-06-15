@@ -2,9 +2,10 @@ import stage from '../../models/stage/stage';
 import {
 	$cityCanvas,
 } from '../../models/stage/dom';
+import GridHelper from '../../models/stage/GridHelper';
 
 let radius = 145;
-let cameraHeight = 50;
+let cameraHeight = 80;
 
 export default class CityCanvasController {
 	constructor() {
@@ -16,11 +17,21 @@ export default class CityCanvasController {
 		this.renderer.setSize($cityCanvas.width(), $cityCanvas.height());
 		$cityCanvas.append(this.renderer.domElement);
 		
+		// Generate EnvMap
+		let envMapUrls = [];
+		envMapUrls.push('assets/img/env/top-right.png');  // left is left
+		envMapUrls.push('assets/img/env/top-right.png');  // right is right
+		envMapUrls.push('assets/img/env/bottom-right.png');  // top is back
+		envMapUrls.push('assets/img/env/black.png');  // bottom is front
+		envMapUrls.push('assets/img/env/black.png');  // back is bottom
+		envMapUrls.push('assets/img/env/black.png');  // front is top
+		this.envMap = THREE.ImageUtils.loadTextureCube(envMapUrls);
+		
 		// Build scene
 		this.rebuild();
 	}
 	
-	rebuild() {
+	rebuild(city) {
 		//-------------------------------------------------
 		// Scene
 		if (this.scene) {
@@ -51,16 +62,18 @@ export default class CityCanvasController {
 		if (this.directionalLight) {
 			delete this.directionalLight;
 		}
-		this.directionalLight = new THREE.DirectionalLight(0xffffff);
-		this.directionalLight.position.set(-10, -50, 30);
-		this.directionalLight.castShadow = true;
+		this.directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+		//this.directionalLight.position.set(8, 10, 20);
+		this.directionalLight.position.set(-80, 100, 200);
+		//this.directionalLight.castShadow = true;
 		this.scene.add(this.directionalLight);
 		
 		// Ambient light
 		if (this.ambientLight) {
 			delete this.ambientLight;
 		}
-		this.ambientLight = new THREE.AmbientLight(0x999999);
+		//this.ambientLight = new THREE.AmbientLight(0x999999);
+		this.ambientLight = new THREE.AmbientLight(0xffffff);
 		this.scene.add(this.ambientLight);
 		
 		//-------------------------------------------------
@@ -75,8 +88,16 @@ export default class CityCanvasController {
 		if (this.gridHelper) {
 			delete this.gridHelper;
 		}
-		this.gridHelper = new THREE.GridHelper(500, 5);
+		if (city) {
+			this.gridHelper = new GridHelper(city.bounds.end.x, city.bounds.end.y, 2);
+		} else {
+			this.gridHelper = new GridHelper(100, 100, 2);
+		}
 		this.scene.add(this.gridHelper);
+		
+		// Directional Light Helper
+		this.directionalLightHelper = new THREE.DirectionalLightHelper(this.directionalLight);
+		this.scene.add(this.directionalLightHelper);
 		
 		//-------------------------------------------------
 		// Call render at first
