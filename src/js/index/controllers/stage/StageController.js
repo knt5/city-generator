@@ -203,6 +203,12 @@ export default class StageController {
 				
 				let cityMesh = new THREE.Mesh(city.geometries[type], material);
 				
+				// Save mesh
+				if (!city.meshes) {
+					city.meshes = {};
+				}
+				city.meshes[type] = cityMesh;
+				
 				// Add mesh to scene
 				stage.cityCanvasController.scene.add(cityMesh);
 			}

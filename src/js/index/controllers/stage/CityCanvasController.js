@@ -1,4 +1,5 @@
 import stage from '../../models/stage/stage';
+import cities from '../../models/stage/cities';
 import {
 	$cityCanvas,
 } from '../../models/stage/dom';
@@ -6,6 +7,7 @@ import GridHelper from '../../models/stage/GridHelper';
 
 let radius = 145;
 let cameraHeight = 80;
+let theta = 0;
 
 export default class CityCanvasController {
 	constructor() {
@@ -28,10 +30,14 @@ export default class CityCanvasController {
 		this.envMap = THREE.ImageUtils.loadTextureCube(envMapUrls);
 		
 		// Build scene
-		this.rebuild();
+		//this.rebuild();
 	}
 	
 	rebuild(city) {
+		//-------------------------------------------------
+		// Save the city
+		this.city = city;
+		
 		//-------------------------------------------------
 		// Scene
 		if (this.scene) {
@@ -88,8 +94,8 @@ export default class CityCanvasController {
 		if (this.gridHelper) {
 			delete this.gridHelper;
 		}
-		if (city) {
-			this.gridHelper = new GridHelper(city.bounds.end.x, city.bounds.end.y, 2);
+		if (this.city) {
+			this.gridHelper = new GridHelper(this.city.bounds.end.x, this.city.bounds.end.y, 2);
 		} else {
 			this.gridHelper = new GridHelper(100, 100, 2);
 		}
@@ -126,6 +132,18 @@ export default class CityCanvasController {
 	 */
 	animate() {
 		let self = stage.cityCanvasController;
+		
+		theta += 0.005;
+		
+		for (let type in self.city.meshes) {
+			console.log(self.city.meshes[type]);
+			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8 + 0.2;
+			if (intensity < 0) {
+				intensity = 0;
+			}
+			self.city.meshes[type].material.emissiveIntensity = intensity;
+		}
+		
 		self.render();
 		
 		if (self === this) {
