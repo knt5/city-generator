@@ -95,59 +95,61 @@ export default class StageController {
 			// Generate buildings
 			
 			// Init building scene
-			stage.buildingCanvasController.rebuild();
+			//stage.buildingCanvasController.rebuild();
 			
 			// Generate
-			for (let feature of city.geo.features) {
-				//-----------------------------------------
-				// Generate building mesh
-				
-				let building = new Building(feature, city);
-				let type = feature.properties.type;
-				let fid = feature.properties.fid;
-				let amount = building.height;
-				
-				let geometry = new THREE.ExtrudeGeometry(building.shape, {
-					amount,
-					bevelThickness: 0.1,
-					bevelSize: 0.1,
-					bevelSegments: 1,
-					bevelEnabled: true,
-					curveSegments: 1,
-					steps: 1
-				});
-				
-				let mesh = new THREE.Mesh(geometry, null);
-				
-				// Elevation
-				let elevation = heightPredictionUtil.getElevation(building, city);
-				mesh.position.z += elevation;
-				
-				//-----------------------------------------
-				// Save building mesh
-				
-				if (!city.buildings) {
-					city.buildings = {};
+			if (!city.geometries) {
+				for (let feature of city.geo.features) {
+					//-----------------------------------------
+					// Generate building mesh
+					
+					let building = new Building(feature, city);
+					let type = feature.properties.type;
+					let fid = feature.properties.fid;
+					let amount = building.height;
+					
+					let geometry = new THREE.ExtrudeGeometry(building.shape, {
+						amount,
+						bevelThickness: 0.1,
+						bevelSize: 0.1,
+						bevelSegments: 1,
+						bevelEnabled: true,
+						curveSegments: 1,
+						steps: 1
+					});
+					
+					let mesh = new THREE.Mesh(geometry, null);
+					
+					// Elevation
+					let elevation = heightPredictionUtil.getElevation(building, city);
+					mesh.position.z += elevation;
+					
+					//-----------------------------------------
+					// Save building mesh
+					
+					if (!city.buildings) {
+						city.buildings = {};
+					}
+					
+					if (!city.buildings[fid]) {
+						city.buildings[fid] = {};
+					}
+					
+					city.buildings[fid].mesh = mesh;
+					
+					//-----------------------------------------
+					// Merge building mesh to city mesh
+					
+					if (!city.geometries) {
+						city.geometries = {};
+					}
+					
+					if (!city.geometries[type]) {
+						city.geometries[type] = new THREE.Geometry();
+					}
+					
+					city.geometries[type].mergeMesh(mesh);
 				}
-				
-				if (!city.buildings[fid]) {
-					city.buildings[fid] = {};
-				}
-				
-				city.buildings[fid].mesh = mesh;
-				
-				//-----------------------------------------
-				// Merge building mesh to city mesh
-				
-				if (!city.geometries) {
-					city.geometries = {};
-				}
-				
-				if (!city.geometries[type]) {
-					city.geometries[type] = new THREE.Geometry();
-				}
-				
-				city.geometries[type].mergeMesh(mesh);
 			}
 			
 			//=============================================
@@ -171,7 +173,7 @@ export default class StageController {
 						color = 0xffec47;
 						break;
 					case 1:
-						color = 0x316745;
+						color = 0x618e34;
 						break;
 					case 2:
 						color = 0xeb6101;
