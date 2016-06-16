@@ -1,9 +1,10 @@
 import stage from '../../models/stage/stage';
-import cities from '../../models/stage/cities';
+//import cities from '../../models/stage/cities';
 import {
 	$cityCanvas,
 } from '../../models/stage/dom';
-import GridHelper from '../../models/stage/GridHelper';
+//import GridHelper from '../../models/stage/GridHelper';
+import deviceUtil from '../../utils/deviceUtil';
 
 let radius = 145;
 let cameraHeight = 80;
@@ -17,6 +18,7 @@ export default class CityCanvasController {
 		// Renderer
 		this.renderer = new THREE.WebGLRenderer();
 		this.renderer.setSize($cityCanvas.width(), $cityCanvas.height());
+		this.renderer.setPixelRatio(deviceUtil.getPixelRatio());
 		$cityCanvas.append(this.renderer.domElement);
 		
 		// Generate EnvMap
@@ -142,7 +144,6 @@ export default class CityCanvasController {
 		theta += 0.005;
 		
 		for (let type in self.city.meshes) {
-			console.log(self.city.meshes[type]);
 			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8 + 0.2;
 			if (intensity < 0) {
 				intensity = 0;

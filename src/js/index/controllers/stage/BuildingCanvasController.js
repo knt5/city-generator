@@ -4,7 +4,7 @@ import {
 } from '../../models/stage/dom';
 
 let radius = 200;
-let theta = -1;
+//let theta = -1;
 
 export default class BuildingCanvasController {
 	constructor() {
