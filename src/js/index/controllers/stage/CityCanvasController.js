@@ -92,7 +92,7 @@ export default class CityCanvasController {
 		}
 		this.axisHelper = new THREE.AxisHelper(500);
 		this.scene.add(this.axisHelper);
-		*/
+		//*/
 		
 		// Grid helper
 		/*
@@ -141,7 +141,7 @@ export default class CityCanvasController {
 	animate() {
 		let self = stage.cityCanvasController;
 		
-		theta += 0.005;
+		theta += 0.01;
 		
 		for (let type in self.city.meshes) {
 			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8 + 0.2;

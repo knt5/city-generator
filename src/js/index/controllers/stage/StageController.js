@@ -117,10 +117,10 @@ export default class StageController {
 					steps: 1
 				});
 				
-				let material = new THREE.MeshStandardMaterial({
-				});
+				//let material = new THREE.MeshStandardMaterial({
+				//});
 				
-				let mesh = new THREE.Mesh(geometry, material);
+				let mesh = new THREE.Mesh(geometry, null);
 				
 				// Elevation
 				let elevation = heightPredictionUtil.getElevation(building, city);
@@ -197,8 +197,8 @@ export default class StageController {
 					color: 0x333333,
 					emissive: color,
 					emissiveIntensity: 0.5,
-					envMap: stage.cityCanvasController.envMap,
 					reflectivity: 0.6,
+					envMap: stage.cityCanvasController.envMap,
 				});
 				
 				let cityMesh = new THREE.Mesh(city.geometries[type], material);

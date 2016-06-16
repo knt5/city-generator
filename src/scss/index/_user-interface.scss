@@ -1,18 +1,17 @@
 .user-interface {
+	pointer-events: none;
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	pointer-events: none;
 }
 
 //=========================================================
 // Header
 
 .header {
+	pointer-events: none;
 	padding: 10px 72px 10px 16px;
 	z-index: 1000;
-	pointer-events: all;
 	
 	h1 {
 		font-size: 34px;
@@ -26,6 +25,10 @@
 
 .facebook {
 	margin-top: 8px;
+	
+	iframe {
+		pointer-events: all;
+	}
 }
 
 @media (max-width: 415px) {
@@ -38,15 +41,16 @@
 // Map
 
 $map-height: 320px;
-$mobile-map-height: 140px;
+$mobile-map-height: 100px;
 
 .map {
-	position: absolute;
 	pointer-events: all;
+	position: absolute;
 	right: 0;
 	bottom: 0;
 	width: 360px;
 	height: $map-height;
+	opacity: .9;
 }
 
 @media (max-width: 415px) {
@@ -61,7 +65,6 @@ $mobile-map-height: 140px;
 
 .city-select-box {
 	position: relative;
-	pointer-events: all;
 	margin: -12px 0 0 16px;
 }
 
@@ -71,6 +74,7 @@ $mobile-map-height: 140px;
 }
 
 .city-select {
+	pointer-events: all;
 	display: block;
 	float: left;
 	opacity: .95;
