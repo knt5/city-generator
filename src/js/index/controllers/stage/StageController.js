@@ -117,9 +117,6 @@ export default class StageController {
 					steps: 1
 				});
 				
-				//let material = new THREE.MeshStandardMaterial({
-				//});
-				
 				let mesh = new THREE.Mesh(geometry, null);
 				
 				// Elevation
@@ -171,33 +168,23 @@ export default class StageController {
 				
 				switch (type) {
 					case 0:
-						color = 0xfef263;
+						color = 0xffec47;
 						break;
 					case 1:
-						color = 0xcee4ae;
+						color = 0x316745;
 						break;
 					case 2:
-						color = 0xf19072;
+						color = 0xeb6101;
 						break;
 					case 3:
 						color = 0xa0d8ef;
 						break;
 				}
-				/*
-				let material = new THREE.MeshStandardMaterial({
-					color: 0x333333,
-					roughness: 0.25,
-					metalness: 0.85,
-					emissive: color,
-					emissiveIntensity: 0.2,
-					envMap: stage.cityCanvasController.envMap,
-				});
-				*/
 				let material = new THREE.MeshPhongMaterial({
 					color: 0x333333,
 					emissive: color,
-					emissiveIntensity: 0.5,
-					reflectivity: 0.6,
+					emissiveIntensity: 0.2,
+					reflectivity: 0.7,
 					envMap: stage.cityCanvasController.envMap,
 				});
 				

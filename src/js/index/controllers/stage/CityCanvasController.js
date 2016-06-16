@@ -144,7 +144,7 @@ export default class CityCanvasController {
 		theta += 0.01;
 		
 		for (let type in self.city.meshes) {
-			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8 + 0.2;
+			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8;
 			if (intensity < 0) {
 				intensity = 0;
 			}
