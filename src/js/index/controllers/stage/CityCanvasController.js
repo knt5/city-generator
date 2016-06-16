@@ -45,7 +45,7 @@ export default class CityCanvasController {
 		}
 		this.scene = new THREE.Scene();
 		this.scene.autoUpdate = false;
-		this.scene.fog = new THREE.Fog(0xffffff, 100, 1200);
+		this.scene.fog = new THREE.Fog(0xffffff, 10, 500);
 		
 		// Camera
 		if (this.camera) {
@@ -84,13 +84,16 @@ export default class CityCanvasController {
 		
 		//-------------------------------------------------
 		// Axis helper
+		/*
 		if (this.axisHelper) {
 			delete this.axisHelper;
 		}
 		this.axisHelper = new THREE.AxisHelper(500);
 		this.scene.add(this.axisHelper);
+		*/
 		
 		// Grid helper
+		/*
 		if (this.gridHelper) {
 			delete this.gridHelper;
 		}
@@ -100,10 +103,13 @@ export default class CityCanvasController {
 			this.gridHelper = new GridHelper(100, 100, 2);
 		}
 		this.scene.add(this.gridHelper);
+		//*/
 		
 		// Directional Light Helper
+		/*
 		this.directionalLightHelper = new THREE.DirectionalLightHelper(this.directionalLight);
 		this.scene.add(this.directionalLightHelper);
+		*/
 		
 		//-------------------------------------------------
 		// Call render at first
