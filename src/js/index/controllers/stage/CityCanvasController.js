@@ -22,14 +22,17 @@ export default class CityCanvasController {
 		$cityCanvas.append(this.renderer.domElement);
 		
 		// Generate EnvMap
-		let envMapUrls = [];
-		envMapUrls.push('assets/img/env/top-right.png');  // left is left
-		envMapUrls.push('assets/img/env/top-right.png');  // right is right
-		envMapUrls.push('assets/img/env/bottom-right.png');  // top is back
-		envMapUrls.push('assets/img/env/black.png');  // bottom is front
-		envMapUrls.push('assets/img/env/black.png');  // back is bottom
-		envMapUrls.push('assets/img/env/black.png');  // front is top
-		this.envMap = THREE.ImageUtils.loadTextureCube(envMapUrls);
+		const cubeTextureLoader = new THREE.CubeTextureLoader();
+		cubeTextureLoader.load([
+			'assets/img/env/top-right.png',  // left is left
+			'assets/img/env/top-right.png',  // right is right
+			'assets/img/env/bottom-right.png',  // top is back
+			'assets/img/env/black.png',  // bottom is front
+			'assets/img/env/black.png',  // back is bottom
+			'assets/img/env/black.png',  // front is top
+		], (texture) => {
+			this.envMap = texture;
+		});
 		
 		// Build scene
 		//this.rebuild();
@@ -142,7 +145,6 @@ export default class CityCanvasController {
 		let self = stage.cityCanvasController;
 		
 		theta += 0.01;
-		console.log(theta);
 		
 		for (let type in self.city.meshes) {
 			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8;
