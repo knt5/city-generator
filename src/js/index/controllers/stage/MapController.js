@@ -54,7 +54,8 @@ export default class MapController {
 			// Show status
 			stage.cityCanvasStatusController.show('Loading...', () => {
 				// Load data
-				$.getJSON(`assets/dat/${id}.geojson`, (data) => {
+				$.getJSON(`assets/dat/${id}.geojson`)
+				.done((data) => {
 					// Save GeoJSON data
 					city.geo = data;
 					
@@ -102,7 +103,8 @@ export default class MapController {
 							callback(city);
 						};
 					};
-				});
+				})
+				.fail(stage.cityCanvasStatusController.showFailedToLoad);
 			});
 			
 		} else {
