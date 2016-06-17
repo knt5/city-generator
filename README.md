@@ -2,11 +2,9 @@
 
 Demo: https://knt5.github.io/demo/city-generator/
 
-This is a tech demo to predict height of buildings in real time on web browser and generate 3D city.
-
-The height prediction is based on elevation data (DSM) recoded by Advanced Land Observing Satellite "[DAICHI](http://global.jaxa.jp/projects/sat/alos/index.html)" (ALOS) of JAXA.
-
-The demo also uses building peripheral lines and elevation data without height of buildings (DEM) by GSI (Geospatial Information Authority of Japan).
+- This is a tech demo to predict height of buildings in real time on web browser and generate 3D city.
+- The height prediction is based on elevation data (DSM) recoded by Advanced Land Observing Satellite "[DAICHI](http://global.jaxa.jp/projects/sat/alos/index.html)" (ALOS) of JAXA.
+- The demo also uses building peripheral lines and elevation data without height of buildings (DEM) by GSI (Geospatial Information Authority of Japan).
 
 Japanese:
 
