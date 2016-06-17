@@ -204,7 +204,6 @@ export default class StageController {
 			}
 			
 			stage.cityCanvasController.animate();
-			//stage.cityCanvasController.render();
 		});
 	}
 }
