@@ -142,6 +142,7 @@ export default class CityCanvasController {
 		let self = stage.cityCanvasController;
 		
 		theta += 0.01;
+		console.log(theta);
 		
 		for (let type in self.city.meshes) {
 			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8;
@@ -153,12 +154,8 @@ export default class CityCanvasController {
 		
 		self.render();
 		
-		if (self === this) {
-			self.stopAnimationSignal = false;
-		}
-		
 		if (!self.stopAnimationSignal) {
-			requestAnimationFrame(self.animate);
+			self.requestId = requestAnimationFrame(self.animate);
 		}
 	}
 	
@@ -166,7 +163,11 @@ export default class CityCanvasController {
 	 *
 	 */
 	stopAnimation() {
-		this.stopAnimationSignal = true;
+		let self = stage.cityCanvasController;
+		
+		if (self.requestId) {
+			cancelAnimationFrame(self.requestId);
+		}
 	}
 	
 	/**

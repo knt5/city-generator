@@ -114,14 +114,11 @@ export default class BuildingCanvasController {
 	 */
 	animate() {
 		let self = stage.buildingCanvasController;
+		
 		self.render();
 		
-		if (self === this) {
-			self.stopAnimationSignal = false;
-		}
-		
 		if (!self.stopAnimationSignal) {
-			requestAnimationFrame(self.animate);
+			self.requestId = requestAnimationFrame(self.animate);
 		}
 	}
 	
@@ -129,7 +126,11 @@ export default class BuildingCanvasController {
 	 *
 	 */
 	stopAnimation() {
-		this.stopAnimationSignal = true;
+		let self = stage.cityCanvasController;
+		
+		if (self.requestId) {
+			cancelAnimationFrame(self.requestId);
+		}
 	}
 	
 	/**

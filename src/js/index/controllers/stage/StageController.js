@@ -182,6 +182,7 @@ export default class StageController {
 						color = 0xa0d8ef;
 						break;
 				}
+				
 				let material = new THREE.MeshPhongMaterial({
 					color: 0x333333,
 					emissive: color,
