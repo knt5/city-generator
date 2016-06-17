@@ -1,4 +1,5 @@
 import stage from '../../models/stage/stage';
+import facebookUtil from '../../utils/facebookUtil';
 import StageController from '../stage/StageController';
 
 export default class AppController {
@@ -36,6 +37,11 @@ export default class AppController {
 		// Stage size
 		let width = $window.width();
 		let height = $window.height();
+		
+		// Change the height if running on facebook app
+		if (facebookUtil.isFacebookApp()) {
+			height -= 105;
+		}
 		
 		// Resize stage
 		stage.controller.resizeStage(width, height);

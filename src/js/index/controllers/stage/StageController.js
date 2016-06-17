@@ -48,8 +48,6 @@ export default class StageController {
 	 * Resize stage and layers
 	 */
 	resizeStage(width, height) {
-		// TODO: Check Facebook app or not and change the height
-		
 		// Resize stage
 		this.resize($stage, width, height);
 		
