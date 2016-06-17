@@ -40,7 +40,7 @@ export default class AppController {
 		
 		// Change the height if running on facebook app
 		if (facebookUtil.isFacebookApp()) {
-			height -= 105;
+			height -= 110;
 		}
 		
 		// Resize stage

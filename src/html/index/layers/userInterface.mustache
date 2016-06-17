@@ -1,26 +1,15 @@
 <div id="user-interface" class="user-interface">
 	<header id="header" class="header">
 		<h1>City Generator</h1>
-		<p>
-			A tech demo of generating 3D city from DSM data by JAXA ALOS and building peripheral line data of
-			<span class="hidden-on-mobile">
-				Geospatial Information Authority of Japan.
-			</span>
-			<span class="visible-on-mobile">
-				GSI.
-			</span>
-		</p>
-		<p>
-			JAXA ALOS の DSM と国土地理院の建築物外周線データから3D市街地を生成するデモ
-		</p>
+		<p>A prediction of height of buildings ➔ <a href="https://github.com/knt5/city-generator" target="_blank">more info</a></p>
 		
 		{{> userInterfaceParts/facebookLikeButton }}
 	</header>
+	
+	<div id="map" class="map"></div>
 	
 	<div class="city-select-box clearfix">
 		<div class="city-select-title">City :</div>
 		<select id="city-select" class="city-select"></select>
 	</div>
-	
-	<div id="map" class="map"></div>
 </div>

@@ -67,6 +67,7 @@ export default {
 			size: 0.000055555555
 		}
 	},
+	/*
 	'tokyo-sky-tree': {
 		name: 'Tokyo sky tree (東京スカイツリー)',
 		dsm: {
@@ -84,6 +85,7 @@ export default {
 			size: 0.000055555555
 		}
 	},
+	*/
 	'tokyo-university': {
 		name: 'Tokyo university (東京大学)',
 		dsm: {

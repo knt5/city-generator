@@ -24,7 +24,7 @@ body, input, select, textarea, th, td {
 }
 
 a {
-	color: #39f;
+	color: #3af;
 }
 
 a:link, a:visited, a:active {
@@ -42,21 +42,4 @@ a:hover {
 	content: '';
 	display: block;
 	clear: both;
-}
-
-//=========================================================
-// Mobile visible control
-
-.visible-on-mobile {
-	display: none;
-}
-
-@media (max-width: 415px) {
-	.hidden-on-mobile {
-		display: none;
-	}
-	
-	.visible-on-mobile {
-		display: inline-block;
-	}
 }
