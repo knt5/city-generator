@@ -8,7 +8,7 @@ Demo: https://knt5.github.io/demo/city-generator/
 
 Japanese:
 
-- ビルの高さをブラウザ上でリアルタイムに予測し、3D 市街地を構築するデモです。
+- ビルの高さをブラウザ上でリアルタイムに推測し、3D 市街地を構築するデモです。
 - JAXA の陸域観測技術衛星「[だいち](http://www.jaxa.jp/projects/sat/alos/index_j.html)」(ALOS) による標高データ(DSM)をベースしています。
 - JAXA のデータの他に、国土地理院の建物外周線データと、ビル高さなし標高データ(DEM)を使用しています。
 
