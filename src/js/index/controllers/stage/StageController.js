@@ -1,3 +1,4 @@
+// Models
 import stage from '../../models/stage/stage';
 import cities from '../../models/stage/cities';
 import {
@@ -5,17 +6,21 @@ import {
 	$map,
 	$cityCanvas,
 	$cityCanvasStatus,
+	$cityCanvasStatusText,
 	$buildingPreview,
 	$userInterface,
 	$citySelect,
 } from '../../models/stage/dom';
-import Building from '../../models/stage/Building';
+
+// Controllers
 import MapController from './MapController';
 import BuildingPreviewController from './BuildingPreviewController';
 import BuildingCanvasController from './BuildingCanvasController';
 import CityCanvasController from './CityCanvasController';
+import CityCanvasStatusController from './CityCanvasStatusController';
+
+// Utils
 import cityUtil from '../../utils/cityUtil';
-import heightPredictionUtil from '../../utils/heightPredictionUtil';
 
 export default class StageController {
 	constructor() {
@@ -24,6 +29,7 @@ export default class StageController {
 		stage.buildingPreviewController = new BuildingPreviewController();
 		stage.buildingCanvasController = new BuildingCanvasController();
 		stage.cityCanvasController = new CityCanvasController();
+		stage.cityCanvasStatusController = new CityCanvasStatusController();
 		
 		// Generate city select contents
 		for (let id in cities) {
@@ -60,9 +66,12 @@ export default class StageController {
 		// Reset building preview layer
 		stage.buildingPreviewController.resetLayer(width, height);
 		
-		// Call resize() of canvas controller
+		// Canvas controllers' resize() for three.js
 		stage.cityCanvasController.resize(width, height);
 		stage.buildingCanvasController.resize();
+		
+		// Set message box position
+		$cityCanvasStatusText.css('top', height / 2 - 40 + 'px');
 	}
 	
 	/**
@@ -73,135 +82,23 @@ export default class StageController {
 		
 		// Change city
 		stage.mapController.changeCity(id, (city) => {
-			
-			//=============================================
-			// Stop animation
-			
 			// Stop city animation
 			stage.cityCanvasController.stopAnimation();
 			
-			// Stop building animation
-			stage.buildingCanvasController.stopAnimation();
-			
-			//=============================================
-			// Make city bounds, delta lat/lng and cneter
+			// Update city bounds
 			if (city.south === undefined) {
 				cityUtil.updateCityBounds(city);
 			}
 			
-			//=============================================
-			// Generate buildings
-			
-			// Init building scene
-			//stage.buildingCanvasController.rebuild();
-			
-			// Generate
-			if (!city.geometries) {
-				for (let feature of city.geo.features) {
-					//-----------------------------------------
-					// Generate building mesh
-					
-					let building = new Building(feature, city);
-					let type = feature.properties.type;
-					let fid = feature.properties.fid;
-					let amount = building.height;
-					
-					let geometry = new THREE.ExtrudeGeometry(building.shape, {
-						amount,
-						bevelThickness: 0.1,
-						bevelSize: 0.1,
-						bevelSegments: 1,
-						bevelEnabled: true,
-						curveSegments: 1,
-						steps: 1
-					});
-					
-					let mesh = new THREE.Mesh(geometry, null);
-					
-					// Elevation
-					let elevation = heightPredictionUtil.getElevation(building, city);
-					mesh.position.z += elevation;
-					
-					//-----------------------------------------
-					// Save building mesh
-					
-					if (!city.buildings) {
-						city.buildings = {};
-					}
-					
-					if (!city.buildings[fid]) {
-						city.buildings[fid] = {};
-					}
-					
-					city.buildings[fid].mesh = mesh;
-					
-					//-----------------------------------------
-					// Merge building mesh to city mesh
-					
-					if (!city.geometries) {
-						city.geometries = {};
-					}
-					
-					if (!city.geometries[type]) {
-						city.geometries[type] = new THREE.Geometry();
-					}
-					
-					city.geometries[type].mergeMesh(mesh);
-				}
-			}
-			
-			//=============================================
-			// Add merged geometry to city canvas
-			
 			// Init city scene
 			stage.cityCanvasController.rebuild(city);
 			
-			// Add mesh
-			for (let type in city.geometries) {
-				let color;
-				
-				// Calc normals
-				city.geometries[type].computeVertexNormals();
-				
-				// Convert string to number for switch
-				type = parseInt(type);
-				
-				switch (type) {
-					case 0:
-						color = 0xffec47;
-						break;
-					case 1:
-						color = 0x618e34;
-						break;
-					case 2:
-						color = 0xeb6101;
-						break;
-					case 3:
-						color = 0xa0d8ef;
-						break;
-				}
-				
-				let material = new THREE.MeshPhongMaterial({
-					color: 0x333333,
-					emissive: color,
-					emissiveIntensity: 0.2,
-					reflectivity: 0.7,
-					envMap: stage.cityCanvasController.envMap,
-				});
-				
-				let cityMesh = new THREE.Mesh(city.geometries[type], material);
-				
-				// Save mesh
-				if (!city.meshes) {
-					city.meshes = {};
-				}
-				city.meshes[type] = cityMesh;
-				
-				// Add mesh to scene
-				stage.cityCanvasController.scene.add(cityMesh);
-			}
-			
-			stage.cityCanvasController.animate();
+			// Generate
+			stage.cityCanvasStatusController.show('Predicting and generating...', () => {
+				cityUtil.addCityToScene(city);
+				stage.cityCanvasController.animate();
+				stage.cityCanvasStatusController.hide();
+			});
 		});
 	}
 }

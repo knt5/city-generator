@@ -8,7 +8,7 @@ import deviceUtil from '../../utils/deviceUtil';
 
 let radius = 145;
 let cameraHeight = 80;
-let theta = 0;
+let theta = Math.PI;
 
 export default class CityCanvasController {
 	constructor() {

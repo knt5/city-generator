@@ -50,52 +50,59 @@ export default class MapController {
 		if (!city.geo) {
 			//---------------------------------------------
 			// Load city GeoJSON and DSM/DEM images if needed
-			$.getJSON(`assets/dat/${id}.geojson`, (data) => {
-				// Save GeoJSON data
-				city.geo = data;
-				
-				// Calculate center position
-				let dem = city.dem;
-				city.center = {
-					lat: dem.lat + dem.size * (dem.height / 2),
-					lng: dem.lng + dem.size * (dem.width / 2)
-				};
-				
-				// Clear
-				clearMap();
-				
-				// Add city
-				addCity(city);
-				
-				//-----------------------------------------
-				// Load DSM image
-				let dsmImage = new Image();
-				dsmImage.src = `assets/dat/${id}.dsm.png`;
-				dsmImage.onload = () => {
-					// Save image
-					city.dsm.image = dsmImage;
+			
+			// Show status
+			stage.cityCanvasStatusController.show('Loading...', () => {
+				// Load data
+				$.getJSON(`assets/dat/${id}.geojson`, (data) => {
+					// Save GeoJSON data
+					city.geo = data;
 					
-					// Create DSM points
-					createElevationPoints(city.dsm);
-					
-					// Add DSM to map
-					addDsm(city);
-					
-					//-------------------------------------
-					// Load DEM image
-					let demImage = new Image();
-					demImage.src = `assets/dat/${id}.dem.png`;
-					demImage.onload = () => {
-						// Save image
-						city.dem.image = demImage;
-						
-						// Create DEM points
-						createElevationPoints(city.dem);
-						
-						// Done
-						callback(city);
+					// Calculate center position
+					let dem = city.dem;
+					city.center = {
+						lat: dem.lat + dem.size * (dem.height / 2),
+						lng: dem.lng + dem.size * (dem.width / 2)
 					};
-				};
+					
+					// Clear
+					clearMap();
+					
+					// Add city
+					addCity(city);
+					
+					//-----------------------------------------
+					// Load DSM image
+					let dsmImage = new Image();
+					dsmImage.src = `assets/dat/${id}.dsm.png`;
+					dsmImage.onerror = stage.cityCanvasStatusController.showFailedToLoad;
+					dsmImage.onload = () => {
+						// Save image
+						city.dsm.image = dsmImage;
+						
+						// Create DSM points
+						createElevationPoints(city.dsm);
+						
+						// Add DSM to map
+						addDsm(city);
+						
+						//-------------------------------------
+						// Load DEM image
+						let demImage = new Image();
+						demImage.src = `assets/dat/${id}.dem.png`;
+						demImage.onerror = stage.cityCanvasStatusController.showFailedToLoad;
+						demImage.onload = () => {
+							// Save image
+							city.dem.image = demImage;
+							
+							// Create DEM points
+							createElevationPoints(city.dem);
+							
+							// Done
+							callback(city);
+						};
+					};
+				});
 			});
 			
 		} else {
