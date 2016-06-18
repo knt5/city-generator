@@ -25,7 +25,8 @@ module.exports = (done) => {
 		((name, entry) => {
 			browserify({
 				entries: entry,
-				extensions: ['.js']
+				extensions: ['.js'],
+				paths: ['./src/js']
 			})
 			.transform(babelify, {
 				presets: ['es2015'],

@@ -1,6 +1,6 @@
 // Models
-import stage from '../../models/stage/stage';
-import cities from '../../models/stage/cities';
+import stage from 'index/models/stage/stage';
+import cities from 'index/models/stage/cities';
 import {
 	$stage,
 	$map,
@@ -10,7 +10,7 @@ import {
 	$buildingPreview,
 	$userInterface,
 	$citySelect,
-} from '../../models/stage/dom';
+} from 'index/models/stage/dom';
 
 // Controllers
 import MapController from './MapController';
@@ -20,7 +20,7 @@ import CityCanvasController from './CityCanvasController';
 import CityCanvasStatusController from './CityCanvasStatusController';
 
 // Utils
-import cityUtil from '../../utils/cityUtil';
+import cityUtil from 'index/utils/cityUtil';
 
 export default class StageController {
 	constructor() {

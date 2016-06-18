@@ -1,7 +1,7 @@
 import {
 	$map,
 	$buildingCanvas,
-} from '../../models/stage/dom';
+} from 'index/models/stage/dom';
 
 //=========================================================
 const buildingCanvas = {

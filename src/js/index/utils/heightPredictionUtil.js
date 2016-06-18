@@ -1,4 +1,4 @@
-import elevationsByHand from '../models/stage/elevationsByHand';
+import elevationsByHand from 'index/models/stage/elevationsByHand';
 
 const maxHeight = {
 	'0': 1.5,  //  15m

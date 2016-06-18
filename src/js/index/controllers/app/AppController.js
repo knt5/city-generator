@@ -1,6 +1,6 @@
-import stage from '../../models/stage/stage';
-import facebookUtil from '../../utils/facebookUtil';
-import StageController from '../stage/StageController';
+import stage from 'index/models/stage/stage';
+import facebookUtil from 'index/utils/facebookUtil';
+import StageController from 'index/controllers/stage/StageController';
 
 export default class AppController {
 	/**

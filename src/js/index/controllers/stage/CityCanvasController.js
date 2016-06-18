@@ -1,10 +1,9 @@
-import stage from '../../models/stage/stage';
-//import cities from '../../models/stage/cities';
+import stage from 'index/models/stage/stage';
 import {
 	$cityCanvas,
-} from '../../models/stage/dom';
-//import GridHelper from '../../models/stage/GridHelper';
-import deviceUtil from '../../utils/deviceUtil';
+} from 'index/models/stage/dom';
+//import GridHelper from 'index/models/stage/GridHelper';
+import deviceUtil from 'index/utils/deviceUtil';
 
 let radius = 145;
 let cameraHeight = 80;

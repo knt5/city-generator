@@ -1,5 +1,5 @@
-import stage from '../../models/stage/stage';
-import cities from '../../models/stage/cities';
+import stage from 'index/models/stage/stage';
+import cities from 'index/models/stage/cities';
 
 export default class MapController {
 	constructor($map) {

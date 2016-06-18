@@ -1,7 +1,7 @@
-import stage from '../../models/stage/stage';
+import stage from 'index/models/stage/stage';
 import {
 	$buildingCanvas,
-} from '../../models/stage/dom';
+} from 'index/models/stage/dom';
 
 let radius = 200;
 //let theta = -1;

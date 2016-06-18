@@ -1,7 +1,7 @@
 import {
 	$cityCanvasStatus,
 	$cityCanvasStatusText,
-} from '../../models/stage/dom';
+} from 'index/models/stage/dom';
 
 export default class CityCanvasStatusController {
 	constructor() {

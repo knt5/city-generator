@@ -1,5 +1,5 @@
-import projectionUtil from '../../utils/projectionUtil';
-import heightPredictionUtil from '../../utils/heightPredictionUtil';
+import projectionUtil from 'index/utils/projectionUtil';
+import heightPredictionUtil from 'index/utils/heightPredictionUtil';
 
 export default class Building {
 	constructor(feature, city) {

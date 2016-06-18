@@ -1,5 +1,5 @@
-import stage from '../models/stage/stage';
-import Building from '../models/stage/Building';
+import stage from 'index/models/stage/stage';
+import Building from 'index/models/stage/Building';
 import projectionUtil from './projectionUtil';
 import heightPredictionUtil from './heightPredictionUtil';
 
