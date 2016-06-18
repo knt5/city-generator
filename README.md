@@ -12,7 +12,7 @@ Japanese:
 - JAXA の陸域観測技術衛星「[だいち](http://www.jaxa.jp/projects/sat/alos/index_j.html)」(ALOS) による標高データ(DSM)をベースしています。
 - JAXA のデータの他に、国土地理院の建物外周線データと、ビル高さなし標高データ(DEM)を使用しています。
 
-## Build an enviroment to develop
+## Build development enviroment
 
 ```
 # node.js ^6.2.1

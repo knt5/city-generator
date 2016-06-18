@@ -4,7 +4,7 @@ import projectionUtil from './projectionUtil';
 import heightPredictionUtil from './heightPredictionUtil';
 
 export default {
-	updateCityBounds(city) {
+	updateCity(city) {
 		if (city.geo) {
 			// Lat lng bounds
 			city.south = 1000;
@@ -32,6 +32,14 @@ export default {
 			city.bounds = {
 				start: { x: -deltaX, y: -deltaY },
 				end: { x: deltaX, y: deltaY }
+			};
+			
+			// Generate ground mesh
+			let groundGeometry = new THREE.BoxGeometry(deltaX * 2, deltaY * 2, 0.5);
+			let groundMaterial = new THREE.MeshBasicMaterial({ color: 0x222222 });
+			let groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
+			city.ground = {
+				mesh: groundMesh
 			};
 		}
 	},

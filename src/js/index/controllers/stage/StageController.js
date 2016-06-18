@@ -85,9 +85,9 @@ export default class StageController {
 			// Stop city animation
 			stage.cityCanvasController.stopAnimation();
 			
-			// Update city bounds
+			// Update city info
 			if (city.south === undefined) {
-				cityUtil.updateCityBounds(city);
+				cityUtil.updateCity(city);
 			}
 			
 			// Init city scene

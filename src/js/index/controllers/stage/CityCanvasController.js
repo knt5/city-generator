@@ -61,6 +61,10 @@ export default class CityCanvasController {
 		this.camera.lookAt(this.scene.position);
 		
 		//-------------------------------------------------
+		// Ground mesh
+		this.scene.add(this.city.ground.mesh);
+		
+		//-------------------------------------------------
 		// Trackball
 		if (this.trackball) {
 			delete this.trackball;
