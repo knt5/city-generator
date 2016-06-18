@@ -74,11 +74,27 @@ export default class CityCanvasController {
 			delete this.directionalLight;
 		}
 		this.directionalLight = new THREE.DirectionalLight(0xffffff, 3);
-		//this.directionalLight.position.set(8, 10, 20);
 		this.directionalLight.position.set(-80, 100, 200);
 		//this.directionalLight.castShadow = true;
 		this.scene.add(this.directionalLight);
 		
+		// East
+		if (this.eastDirectionalLight) {
+			delete this.eastDirectionalLight;
+		}
+		this.eastDirectionalLight = new THREE.DirectionalLight(0xf19072, 2);
+		this.eastDirectionalLight.position.set(80, 20, 80);
+		this.scene.add(this.eastDirectionalLight);
+		
+		// West
+		if (this.westDirectionalLight) {
+			delete this.westDirectionalLight;
+		}
+		this.westDirectionalLight = new THREE.DirectionalLight(0xe7e7eb, 2);
+		this.westDirectionalLight.position.set(80, 20, 80);
+		this.scene.add(this.westDirectionalLight);
+		
+		//-------------------------------------------------
 		// Ambient light
 		if (this.ambientLight) {
 			delete this.ambientLight;
