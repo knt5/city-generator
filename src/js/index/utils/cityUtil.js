@@ -130,11 +130,15 @@ function generateCityGeometries(city) {
 				city.buildings = {};
 			}
 			
+			city.buildings[fid] = building;
+			
+			/*
 			if (!city.buildings[fid]) {
 				city.buildings[fid] = {};
 			}
 			
 			city.buildings[fid].mesh = mesh;
+			*/
 			
 			//-----------------------------------------
 			// Merge building mesh to city mesh
