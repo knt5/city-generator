@@ -2,7 +2,7 @@ import stage from 'index/models/stage/stage';
 import {
 	$cityCanvas,
 } from 'index/models/stage/dom';
-//import GridHelper from 'index/models/stage/GridHelper';
+//import GridHelper from 'index/three/GridHelper';
 import deviceUtil from 'index/utils/deviceUtil';
 
 let radius = 145;
