@@ -172,8 +172,14 @@ export default {
 	// UR river pia azumabashi life tower
 	'20150918-50328-12855-s-10191': 98.75,
 	
-	// Asahi beer
+	// Asahi beer headquarters
 	'20150918-50328-12855-s-10131': 94.9,
+	
+	// Asahi beer black
+	'20150918-50328-12855-s-10157': 40,  // ?
+	
+	// Asahi beer annex
+	'20150918-50328-12855-s-10182': 20,  // ?
 	
 	// Asakusa station EKIMISE
 	'20150918-50325-12855-s-12798': 30,  // ?
