@@ -1,4 +1,4 @@
-import elevationsByHand from 'index/models/stage/elevationsByHand';
+import heightByHand from 'index/models/stage/heightByHand';
 
 const maxHeight = {
 	'0': 1.5,  //  15m
@@ -16,8 +16,8 @@ const minHeight = {
 
 export default {
 	getHeight(feature, building, city) {
-		if (elevationsByHand[feature.properties.fid] !== undefined) {
-			return elevationsByHand[feature.properties.fid] / 10;
+		if (heightByHand[feature.properties.fid] !== undefined) {
+			return heightByHand[feature.properties.fid] / 10;
 		} else {
 			// Prediction
 			return predictHeight(feature, building, city);
