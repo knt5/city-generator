@@ -35,6 +35,15 @@ export default class MapController {
 			stage.map.data.revertStyle();
 		});
 		
+		stage.map.data.addListener('click', (event) => {
+			let cityControls = stage.cityCanvasController.cityControls;
+			let fid = event.feature.getProperty('fid');
+			let city = stage.cityCanvasController.city;
+			let building = city.buildings[fid];
+			
+			cityControls.setCameraPosition(building.center.x, building.center.y);
+		});
+		
 		//-------------------------------------------------
 		// Call onChange at first
 		stage.controller.onChangeCitySelect();

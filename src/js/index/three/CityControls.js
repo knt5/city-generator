@@ -56,6 +56,11 @@ export default class CityControls {
 		this.firstRotationX = this.camera.rotation.x;
 	}
 	
+	setCameraPosition(x, y) {
+		this.camera.position.x = x;
+		this.camera.position.y = this.camera.position.z * this.firstYZRate + y;
+	}
+	
 	update() {
 	}
 	

@@ -30,6 +30,8 @@ export default class Building {
 			lat: this.north - this.deltaLat / 2,
 			lng: this.east - this.deltaLng / 2
 		};
+		this.center.x = projectionUtil.getMeterFromDeltaLng(this.center.lng - city.center.lng, city.center.lat) / 10;
+		this.center.y = projectionUtil.getMeterFromDeltaLat(this.center.lat - city.center.lat, city.center.lat) / 10;
 		
 		// Height
 		this.height = heightPredictionUtil.getHeight(feature, this, city);
