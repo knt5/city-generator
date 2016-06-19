@@ -124,6 +124,8 @@ function createElevationPoints(container) {
 	
 	// Create canvas
 	container.canvas = document.createElement('canvas');
+	container.canvas.width = container.image.width;
+	container.canvas.height = container.image.height;
 	
 	// Get context
 	let context = container.canvas.getContext('2d');
@@ -140,7 +142,7 @@ function createElevationPoints(container) {
 		for (let x=0; x<container.image.width; x++) {
 			container.points[y].push(imageData.data[
 				x * 4 +
-				(container.image.height - y + 1) * container.image.width * 4
+				(container.image.height - y - 1) * container.image.width * 4
 			]);
 		}
 	}
