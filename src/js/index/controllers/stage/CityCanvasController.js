@@ -2,11 +2,10 @@ import stage from 'index/models/stage/stage';
 import {
 	$cityCanvas,
 } from 'index/models/stage/dom';
-//import GridHelper from 'index/three/GridHelper';
 import deviceUtil from 'index/utils/deviceUtil';
+//import GridHelper from 'index/three/GridHelper';
+import CityControls from 'index/three/CityControls';
 
-let radius = 145;
-let cameraHeight = 80;
 let theta = Math.PI;
 
 export default class CityCanvasController {
@@ -33,6 +32,9 @@ export default class CityCanvasController {
 			this.envMap = texture;
 		});
 		
+		// CityControls
+		this.cityControls = new CityControls($cityCanvas);
+		
 		// Build scene
 		//this.rebuild();
 	}
@@ -56,7 +58,7 @@ export default class CityCanvasController {
 			delete this.camera;
 		}
 		this.camera = new THREE.PerspectiveCamera(45, $cityCanvas.width() / $cityCanvas.height(), 1, 1000);
-		this.camera.position.set(0, -radius, cameraHeight);
+		this.camera.position.set(0, -50, 50);
 		this.camera.lookAt(this.scene.position);
 		
 		//-------------------------------------------------
@@ -64,12 +66,18 @@ export default class CityCanvasController {
 		this.scene.add(this.city.ground.mesh);
 		
 		//-------------------------------------------------
+		// Controls
+		this.cityControls.setCamera(this.camera);
+		
 		// Trackball
+		/*
 		if (this.trackball) {
+			this.trackball.dispose();
 			delete this.trackball;
 		}
 		this.trackball = new THREE.TrackballControls(this.camera, $cityCanvas.get(0));
 		this.trackball.staticMoving = true;
+		*/
 		
 		//-------------------------------------------------
 		// Directional light
@@ -149,8 +157,9 @@ export default class CityCanvasController {
 	render() {
 		let self = stage.cityCanvasController;
 		
-		// Control
-		self.trackball.update();
+		// Controls
+		//self.trackball.update();
+		self.cityControls.update();
 		
 		// Render
 		self.scene.updateMatrixWorld();
@@ -167,8 +176,12 @@ export default class CityCanvasController {
 		
 		for (let type in self.city.meshes) {
 			let intensity = Math.cos(theta + parseInt(type) * 1.5) * 0.8;
-			if (intensity < 0) {
-				intensity = 0;
+			if (type === 1) {
+				if (intensity < 0) {
+					intensity = 0;
+				}
+			} else {
+				intensity = Math.abs(intensity);
 			}
 			self.city.meshes[type].material.emissiveIntensity = intensity;
 		}
