@@ -25,7 +25,7 @@ export default class AppController {
 		stage.cityCanvasController.init();
 		
 		// Initialize building canvas
-		stage.buildingCanvasController.init();
+		//stage.buildingCanvasController.init();
 	}
 	
 	/**

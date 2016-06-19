@@ -14,8 +14,8 @@ import {
 
 // Controllers
 import MapController from './MapController';
-import BuildingPreviewController from './BuildingPreviewController';
-import BuildingCanvasController from './BuildingCanvasController';
+//import BuildingPreviewController from './BuildingPreviewController';
+//import BuildingCanvasController from './BuildingCanvasController';
 import CityCanvasController from './CityCanvasController';
 import CityCanvasStatusController from './CityCanvasStatusController';
 
@@ -26,8 +26,8 @@ export default class StageController {
 	constructor() {
 		// Create controllers of stage children
 		stage.mapController = new MapController($map);
-		stage.buildingPreviewController = new BuildingPreviewController();
-		stage.buildingCanvasController = new BuildingCanvasController();
+		//stage.buildingPreviewController = new BuildingPreviewController();
+		//stage.buildingCanvasController = new BuildingCanvasController();
 		stage.cityCanvasController = new CityCanvasController();
 		stage.cityCanvasStatusController = new CityCanvasStatusController();
 		
@@ -64,11 +64,11 @@ export default class StageController {
 		this.resize($userInterface, width, height);
 		
 		// Reset building preview layer
-		stage.buildingPreviewController.resetLayer(width, height);
+		//stage.buildingPreviewController.resetLayer(width, height);
 		
 		// Canvas controllers' resize() for three.js
 		stage.cityCanvasController.resize(width, height);
-		stage.buildingCanvasController.resize();
+		//stage.buildingCanvasController.resize();
 		
 		// Set message box position
 		$cityCanvasStatusText.css('top', height / 2 - 40 + 'px');
