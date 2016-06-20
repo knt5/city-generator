@@ -170,13 +170,16 @@ function generateCityMeshes(city) {
 			
 			switch (type) {
 				case 0:
-					color = 0xffec47;
+					//color = 0xffec47;
+					color = 0xffff40;
 					break;
 				case 1:
-					color = 0x618e34;
+					//color = 0x618e34;
+					color = 0xa5ffa3;
 					break;
 				case 2:
-					color = 0xeb6101;
+					//color = 0xeb6101;
+					color = 0xff7805;
 					break;
 				case 3:
 					color = 0xa0d8ef;
@@ -184,7 +187,8 @@ function generateCityMeshes(city) {
 			}
 			
 			let material = new THREE.MeshPhongMaterial({
-				color: 0x333333,
+				//color: 0x333333,
+				color: 0x111111,
 				emissive: color,
 				emissiveIntensity: 0.2,
 				reflectivity: 0.7,
