@@ -10,6 +10,7 @@ import {
 	$buildingPreview,
 	$userInterface,
 	$citySelect,
+	$rotationCheckbox,
 } from 'index/models/stage/dom';
 
 // Controllers
@@ -40,6 +41,11 @@ export default class StageController {
 		
 		// Register city select change event handler
 		$citySelect.on('change', this.onChangeCitySelect);
+		
+		// Register controls type checkbox (Rotation or not)
+		$rotationCheckbox.on('change', () => {
+			stage.cityCanvasController.changeControls();
+		});
 	}
 	
 	/**

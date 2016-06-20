@@ -1,6 +1,7 @@
 import stage from 'index/models/stage/stage';
 import {
 	$cityCanvas,
+	$rotationCheckbox,
 } from 'index/models/stage/dom';
 import deviceUtil from 'index/utils/deviceUtil';
 //import GridHelper from 'index/three/GridHelper';
@@ -10,6 +11,7 @@ let theta = Math.PI;
 
 export default class CityCanvasController {
 	constructor() {
+		this.rotationChecked = $rotationCheckbox.prop('checked');
 	}
 	
 	init() {
@@ -67,17 +69,7 @@ export default class CityCanvasController {
 		
 		//-------------------------------------------------
 		// Controls
-		this.cityControls.setCamera(this.camera);
-		
-		// Trackball
-		/*
-		if (this.trackball) {
-			this.trackball.dispose();
-			delete this.trackball;
-		}
-		this.trackball = new THREE.TrackballControls(this.camera, $cityCanvas.get(0));
-		this.trackball.staticMoving = true;
-		*/
+		this.changeControls();
 		
 		//-------------------------------------------------
 		// Directional light
@@ -154,12 +146,46 @@ export default class CityCanvasController {
 	/**
 	 *
 	 */
+	changeControls() {
+		this.rotationChecked = $rotationCheckbox.prop('checked');
+		
+		if (this.rotationChecked) {
+			// CityControls
+			this.cityControls.dispose();
+			
+			// TrackballControls
+			if (this.trackball) {
+				this.trackball.dispose();
+				delete this.trackball;
+			}
+			this.trackball = new THREE.TrackballControls(this.camera, $cityCanvas.get(0));
+			this.trackball.staticMoving = true;
+			
+		} else {
+			// TrackballControls
+			if (this.trackball) {
+				this.trackball.dispose();
+				delete this.trackball;
+			}
+			
+			// CityControls
+			this.cityControls.init();
+			this.cityControls.setCamera(this.camera);
+		}
+	}
+	
+	/**
+	 *
+	 */
 	render() {
 		let self = stage.cityCanvasController;
 		
 		// Controls
-		//self.trackball.update();
-		self.cityControls.update();
+		if (this.rotationChecked) {
+			self.trackball.update();
+		} else {
+			self.cityControls.update();
+		}
 		
 		// Render
 		self.scene.updateMatrixWorld();

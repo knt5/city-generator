@@ -7,7 +7,10 @@ export default class CityControls {
 	
 	constructor($element) {
 		this.$element = $element;
-		
+		this.init();
+	}
+	
+	init() {
 		this.$element.on('mousedown', this.mousedown.bind(this));
 		this.$element.on('mouseup', this.mouseup.bind(this));
 		this.$element.on('mousemove', this.mousemove.bind(this));
@@ -27,20 +30,20 @@ export default class CityControls {
 	}
 	
 	dispose() {
-		this.$element.off('mousedown', this.mousedown);
-		this.$element.off('mousemove', this.mousemove);
-		this.$element.off('mouseup', this.mouseup);
+		this.$element.off('mousedown');
+		this.$element.off('mousemove');
+		this.$element.off('mouseup');
 		
-		this.$element.off('mousewheel', this.mousewheel);
+		this.$element.off('mousewheel');
 		
-		this.$element.off('touchstart', this.touchstart);
-		this.$element.off('touchend', this.touchend);
-		this.$element.off('touchcancel', this.touchend);
-		this.$element.off('touchmove', this.touchmove);
+		this.$element.off('touchstart');
+		this.$element.off('touchend');
+		this.$element.off('touchcancel');
+		this.$element.off('touchmove');
 		
-		this.$element.off('gesturestart', this.gesturestart);
-		this.$element.off('gestureend', this.gestureend);
-		this.$element.off('gesturechange', this.gesturechange);
+		this.$element.off('gesturestart');
+		this.$element.off('gestureend');
+		this.$element.off('gesturechange');
 	}
 	
 	setCamera(camera) {
@@ -82,6 +85,7 @@ export default class CityControls {
 	//=====================================================
 	mousemove(event) {
 		let x, y;
+		
 		if (event.type === 'touchmove') {
 			if (event.touches) {
 				const touch = event.touches[0];
@@ -96,6 +100,7 @@ export default class CityControls {
 			}
 		}
 		
+		// Move
 		if (x !== undefined) {
 			let velocity = this.camera.position.z / border.positionZ;
 			

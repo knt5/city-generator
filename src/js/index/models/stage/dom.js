@@ -6,6 +6,7 @@ export const $cityCanvasStatus = $('#city-canvas-status');
 export const $cityCanvasStatusText = $('#city-canvas-status-text');
 export const $buildingPreview = $('#building-preview');
 export const $userInterface = $('#user-interface');
+export const $rotationCheckbox = $('#rotation-checkbox');
 
 //=========================================================
 // City canvas status layer

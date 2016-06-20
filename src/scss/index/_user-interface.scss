@@ -81,11 +81,18 @@ $mobile-map-height: 100px;
 	pointer-events: all;
 	display: block;
 	float: left;
-	opacity: .9;
 	margin-left: 6px;
 	padding: 3px 6px;
 	background: #fff;
 	color: #000;
+}
+
+.rotation-checkbox-box {
+	pointer-events: all;
+	display: block;
+	float: left;
+	margin-left: 6px;
+	padding-top: 3px;
 }
 
 @media (max-width: 415px) {
