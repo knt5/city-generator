@@ -7,7 +7,6 @@ export default class CityControls {
 	
 	constructor($element) {
 		this.$element = $element;
-		this.init();
 	}
 	
 	init() {
