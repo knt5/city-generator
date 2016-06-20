@@ -16,23 +16,6 @@ export default {
 			size: 0.000055555555
 		}
 	},
-	'shinjuku': {
-		name: 'Shinjuku (新宿)',
-		dsm: {
-			width: 52,
-			height: 45,
-			lng: 139.689444444444,
-			lat: 35.682500000000,
-			size: 0.000277777778
-		},
-		dem: {
-			width: 262,
-			height: 226,
-			lng: 139.689555555630,
-			lat: 35.682222222306,
-			size: 0.000055555555
-		}
-	},
 	'asakusa': {
 		name: 'Asakusa (浅草)',
 		dsm: {
@@ -47,6 +30,23 @@ export default {
 			height: 135,
 			lng: 139.794222222168,
 			lat: 35.708388888940,
+			size: 0.000055555555
+		}
+	},
+	'shinjuku': {
+		name: 'Shinjuku (新宿)',
+		dsm: {
+			width: 52,
+			height: 45,
+			lng: 139.689444444444,
+			lat: 35.682500000000,
+			size: 0.000277777778
+		},
+		dem: {
+			width: 262,
+			height: 226,
+			lng: 139.689555555630,
+			lat: 35.682222222306,
 			size: 0.000055555555
 		}
 	},
