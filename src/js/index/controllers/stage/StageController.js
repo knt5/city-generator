@@ -39,6 +39,9 @@ export default class StageController {
 			$citySelect.append(html);
 		}
 		
+		// Initialize
+		stage.cityCanvasController.init();
+		
 		// Register city select change event handler
 		$citySelect.on('change', this.onChangeCitySelect);
 		
