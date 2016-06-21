@@ -42,6 +42,17 @@
 }
 
 //=========================================================
+// Data source
+
+.data-source {
+	position: absolute;
+	font-size: 10px;
+	left: 0;
+	bottom: 0;
+	padding-left: 3px;
+}
+
+//=========================================================
 // Map
 
 $map-height: 320px;
