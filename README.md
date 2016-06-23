@@ -16,6 +16,8 @@ Japanese:
 - JAXA の陸域観測技術衛星「[だいち](http://www.jaxa.jp/projects/sat/alos/index_j.html)」(ALOS) による標高データ(DSM)をベースに高さ推定を行っています。
 - この他に国土地理院の建物外周線データと、ビル高さなし標高データ(DEM)を使用しています。
 
+This project uses [JPGIS GML converter](https://github.com/knt5/jpgis-convert) to convert peripheral lines of buildings data format from JPGIS GML to GeoJSON.
+
 ## Build development enviroment
 
 ```
