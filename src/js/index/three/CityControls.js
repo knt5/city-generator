@@ -107,8 +107,25 @@ export default class CityControls {
 				velocity = 2;
 			}
 			
-			this.camera.position.x -= (x - this.prevX) / 10 * velocity;
-			this.camera.position.y += (y - this.prevY) / 10 * velocity;
+			const deltaX = (x - this.prevX) / 10 * velocity;
+			const deltaY = (y - this.prevY) / 10 * velocity;
+			
+			// Detect the vector from camera.rotation.z
+			const z = this.camera.rotation.z + Math.PI;
+			const p = Math.PI;
+			if (z >= p * 3 / 4 && z < p * 5 / 4) {
+				this.camera.position.x -= deltaX;
+				this.camera.position.y += deltaY;
+			} else if (z >= p * 5 / 4 && z < p * 7 / 4) {
+				this.camera.position.x -= deltaY;
+				this.camera.position.y -= deltaX;
+			} else if ((z >= p * 7 / 4 && z < p * 2) || (z >= 0 && z < p / 4)) {
+				this.camera.position.x += deltaX;
+				this.camera.position.y -= deltaY;
+			} else if (z >= p / 4 && z < p * 3 / 4) {
+				this.camera.position.x += deltaY;
+				this.camera.position.y += deltaX;
+			}
 			
 			this.prevX = x;
 			this.prevY = y;
