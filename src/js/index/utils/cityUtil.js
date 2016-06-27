@@ -132,14 +132,6 @@ function generateCityGeometries(city) {
 			
 			city.buildings[fid] = building;
 			
-			/*
-			if (!city.buildings[fid]) {
-				city.buildings[fid] = {};
-			}
-			
-			city.buildings[fid].mesh = mesh;
-			*/
-			
 			//-----------------------------------------
 			// Merge building mesh to city mesh
 			
@@ -187,7 +179,6 @@ function generateCityMeshes(city) {
 			}
 			
 			let material = new THREE.MeshPhongMaterial({
-				//color: 0x333333,
 				color: 0x111111,
 				emissive: color,
 				emissiveIntensity: 0.2,

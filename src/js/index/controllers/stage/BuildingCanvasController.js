@@ -4,7 +4,6 @@ import {
 } from 'index/models/stage/dom';
 
 let radius = 200;
-//let theta = -1;
 
 export default class BuildingCanvasController {
 	constructor() {
@@ -80,10 +79,6 @@ export default class BuildingCanvasController {
 		}
 		this.gridHelper = new THREE.GridHelper(50, 5);
 		this.scene.add(this.gridHelper);
-		
-		//-------------------------------------------------
-		// Start animation
-		//this.animate();
 	}
 	
 	/**
@@ -91,15 +86,6 @@ export default class BuildingCanvasController {
 	 */
 	render() {
 		let self = stage.buildingCanvasController;
-		
-		// Rotate
-		/*
-		theta += 0.5;
-		self.camera.position.x = radius * Math.cos(THREE.Math.degToRad(theta));
-		self.camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta));
-		//self.camera.lookAt(self.scene.position);
-		//self.camera.lookAt(0);
-		//*/
 		
 		// Control
 		self.trackball.update();

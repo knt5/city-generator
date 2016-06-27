@@ -4,7 +4,6 @@ import {
 	$rotationCheckbox,
 } from 'index/models/stage/dom';
 import deviceUtil from 'index/utils/deviceUtil';
-//import GridHelper from 'index/three/GridHelper';
 import CityControls from 'index/three/CityControls';
 
 let theta = Math.PI;
@@ -36,9 +35,6 @@ export default class CityCanvasController {
 		
 		// CityControls
 		this.cityControls = new CityControls($cityCanvas);
-		
-		// Build scene
-		//this.rebuild();
 	}
 	
 	rebuild(city) {
@@ -107,40 +103,8 @@ export default class CityCanvasController {
 		this.scene.add(this.ambientLight);
 		
 		//-------------------------------------------------
-		// Axis helper
-		/*
-		if (this.axisHelper) {
-			delete this.axisHelper;
-		}
-		this.axisHelper = new THREE.AxisHelper(500);
-		this.scene.add(this.axisHelper);
-		//*/
-		
-		// Grid helper
-		/*
-		if (this.gridHelper) {
-			delete this.gridHelper;
-		}
-		if (this.city) {
-			this.gridHelper = new GridHelper(this.city.bounds.end.x, this.city.bounds.end.y, 2);
-		} else {
-			this.gridHelper = new GridHelper(100, 100, 2);
-		}
-		this.scene.add(this.gridHelper);
-		//*/
-		
-		// Directional Light Helper
-		/*
-		this.directionalLightHelper = new THREE.DirectionalLightHelper(this.directionalLight);
-		this.scene.add(this.directionalLightHelper);
-		*/
-		
-		//-------------------------------------------------
 		// Call render at first
 		this.render();
-		
-		// Start animation
-		//this.animate();
 	}
 	
 	/**
