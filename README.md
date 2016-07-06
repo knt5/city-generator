@@ -18,7 +18,7 @@ Japanese:
 
 This project uses [JPGIS GML converter](https://github.com/knt5/jpgis-convert) to convert peripheral lines of buildings data format from JPGIS GML to GeoJSON.
 
-## Development enviroment
+## Installation for development
 
 ```
 # node.js ^6.2.1
