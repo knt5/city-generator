@@ -45,7 +45,7 @@ module.exports = (done) => {
 				
 				//-------------------------------
 				// Minify
-				gulp.src(config.browserify.dest + '*.js')
+				gulp.src(config.browserify.dest + name + '.js')
 				.pipe(plumber())
 				.pipe(uglify())
 				.pipe(rename(name + '.mustache'))
