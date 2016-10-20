@@ -17,3 +17,15 @@ node_modules
 
 # Build assets
 /*.html
+
+### tools
+
+# Output files
+/tools/converter/*.geojson
+/tools/converter/simplified/
+/tools/converter/cities/
+/tools/converter/meta/
+/tools/converter/dem/
+
+# GSI and JAXA data directory
+/tools/data/

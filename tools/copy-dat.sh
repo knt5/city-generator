@@ -1,6 +1,6 @@
 #!/bin/bash
 
-srcDir="../../jpgis-convert/example"
+srcDir="./converter"
 dstDir="../assets/dat/"
 
 # png
