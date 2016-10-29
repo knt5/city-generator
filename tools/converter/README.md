@@ -2,7 +2,7 @@
 
 ```
 # Convert JPGIS GML files to GeoJSON files
-bash convert-tokyo.sh
+node convert-tokyo.js
 
 # Simplify and remove small polygons
 bash simplify-polygons.sh
